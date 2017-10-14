@@ -1,0 +1,30 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      #navbar.collapse.navbar-collapse
+        a.navbar-brand(style='color: #337ab7')(href="{% url 'history' %}") Pingpong
+        ul.nav.navbar-nav.navbar
+          | {% if request.user.is_authenticated %}
+          li
+            a.nav-link(href="{% url 'history' %}") History
+          li
+            a.nav-link(href="{% url 'log' %}") LogGame
+          |                {% endif %}
+    #navbar.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        | {% if request.user.is_authenticated %}
+        li
+          a.nav-link(href="{% url 'auth_password_change' %}") Change Password
+        li
+          a.nav-link(href="{% url 'auth_logout' %}")  Logout
+        |             {% else %}
+        li
+          a.nav-link(href="{% url 'registration_register' %}") Register
+        li
+          a.nav-link(href="{% url 'auth_login' %}") Login
+        |             {% endif %}

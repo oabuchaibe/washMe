@@ -1,0 +1,13 @@
+{% extends "layout.pug" %}
+{% load i18n %}
+{% block content %}
+<div ></div> 
+   <h1 >Sign up</h1>
+	<form method="post" action=".">{% csrf_token %}
+	  	{{ form }}
+  	<input  type="submit" value="{% trans 'Submit' %}" />
+	</form>
+</div>
+{% endblock %} 
+
+

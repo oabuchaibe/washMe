@@ -1,0 +1,14 @@
+{% extends "layout.pug" %}
+{% load i18n %}
+{% block content %}
+<h1 >Login</h1>
+  <div>
+    <form method="post" action=".">{% csrf_token %} 
+      {{ form }}  
+      <input type="submit" value="{% trans 'Log In' %}" />
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>  
+    <p> <a href="{% url 'auth_password_reset' %}">{% trans "Forgot account?" %}</a></p>
+    <p >{% trans "Do not have an account" %}? <a href="{% url 'registration_register' %}">{% trans " Sign up" %}</a></p>
+  </div>
+{% endblock %}

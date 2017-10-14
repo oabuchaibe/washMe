@@ -1,0 +1,16 @@
+nav
+  .nav-wrapper
+    a.brand-logo(href="{% url 'home' %}") Logo
+    ul#nav-mobile.right.hide-on-med-and-down	
+      |{% if request.user.is_authenticated %}
+      li
+        a(href="{% url 'auth_password_change' %}") Change Password
+      li
+        a(href="{% url 'auth_logout' %}")  Logout
+      |{% else %}
+      li
+        a(href="{% url 'registration_register' %}") Register
+      li
+        a(href="{% url 'auth_login' %}") Login
+      |{% endif %}
+      
