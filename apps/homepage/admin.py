@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import LogGame
+from .models import LogService
 
 
 		
-admin.site.register(LogGame)
+admin.site.register(LogService)

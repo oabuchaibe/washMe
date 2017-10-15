@@ -1,14 +1,15 @@
 from django import forms
+from .models import LogService
 
-from .models import LogGame
 
 
-class LogForm(forms.ModelForm):
 
+class LogServiceForm(forms.ModelForm):
 	class Meta:
-		model = LogGame
-		fields = ['game_date', 'yourScore', 'opponentScore', 'opponent']
+		model = LogService
+		fields = ['hours', 'date_delivery', 'time_entry', 'direction']
 		widgets = {
-            'game_date': forms.TextInput(attrs={'class': 'datepicker'}),
-            
+            'date_delivery': forms.TextInput(attrs={'class': 'datepicker'}),
+            'time_entry': forms.TextInput(attrs={'class':'timepicker'})
             }
+

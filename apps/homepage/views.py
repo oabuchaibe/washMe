@@ -6,16 +6,19 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic.list import ListView
-from .logForms import LogForm
-from .models import LogGame
 from django.contrib.auth.models import User
 from django.conf import settings
+
+
+
+
+from .models import LogService
+from .logForms import LogServiceForm
 
 class LoginRequiredMixin(object):
 	@method_decorator(login_required)
 	def dispatch(self,request,*args,**kwargs):
 		return super(LoginRequiredMixin,self).dispatch(request,*args,**kwargs)
-
 
 class ClassHistoryTemplateView(LoginRequiredMixin, TemplateView):
 	template_name = "history.pug"
@@ -25,27 +28,28 @@ class ClassHistoryTemplateView(LoginRequiredMixin, TemplateView):
 		return context
 
 @login_required(login_url="/accounts/login/?next=/")
-def log_game_view(request):
-	titulo="Log Game"
-	form =  LogForm(request.POST or None)
+def new_service_view(request):
+	titulo="Nuevo Servicio"
+	form =  LogServiceForm(request.POST or None)
 	if form.is_valid():
 		form_data = form.cleaned_data
-		gam =form_data.get("game_date")
-		you =form_data.get("yourScore")
-		oppS =form_data.get("opponentScore")
-		opp =form_data.get("opponent")
-		obj = LogGame.objects.create(game_date=gam, yourScore=you, opponentScore=oppS,opponent=opp)
+		hou =form_data.get('hours')
+		dat =form_data.get('date_delivery')
+		tim =form_data.get('time_entry')
+		die =form_data.get('direction')
+		obj = LogServiceForm.objects.create(hours=hou, date_delivery=dat, time_entry=tim, direction=die)
 
 	context = {
 		"el_form":form,
 		"titulo":titulo
 	}
 	return render(request,"loggame_form.pug",context)
+
 	
-@login_required(login_url="/accounts/login/?next=/")
-def func_games(request):
-    games = serialize("json",LogGame.objects.all())
-    return HttpResponse(games, content_type="application/json")
+# @login_required(login_url="/accounts/login/?next=/")
+# def func_games(request):
+#     games = serialize("json",LogGame.objects.all())
+#     return HttpResponse(games, content_type="application/json")
 
 @login_required(login_url="/accounts/login/?next=/")
 def func_get_users(request):

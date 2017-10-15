@@ -5,8 +5,8 @@
 .row
   .col.s12
     .card-panel.grey.lighten-4
-      form.material-form(method='post')
+      form.material(method='post')
         | {% csrf_token %}
-        | {% form form=el_form %} {% endform %}
+        | {% form form=el_form %}  {% endform %}
         input.waves-effect.waves-light.btn(type='submit', value='Postular')
 | {% endblock %}

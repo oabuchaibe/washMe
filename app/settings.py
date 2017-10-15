@@ -66,6 +66,7 @@ THIRD_PATTY_APPS = (
     'material',
     'material.frontend',
     'material.admin',
+    'crispy_forms',
 )
 
 
