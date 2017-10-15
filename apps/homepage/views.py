@@ -1,49 +1,41 @@
 from django.shortcuts import render
 from django.core.serializers import serialize
+from django.utils.decorators import method_decorator
 from django.http import HttpResponse
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-
-from django.contrib.auth.models import User
-from django.conf import settings
-
 from .models import LogService
-#from .logForms import LogServiceForm
+from .logForms import LogServiceForm
 
 class LoginRequiredMixin(object):
 	@method_decorator(login_required)
 	def dispatch(self,request,*args,**kwargs):
 		return super(LoginRequiredMixin,self).dispatch(request,*args,**kwargs)
 
-class ClassHistoryTemplateView(LoginRequiredMixin, TemplateView):
-	template_name = "history.pug"
-	def get_context_data(self, *args, **kwargs):
-		context = super(ClassHistoryTemplateView, self).get_context_data(*args,**kwargs)
-		context["titulo"]='Hola Mundo'
-		return context
-
 class Detail(DetailView):
-	models = LogService
+	template_name = 'homepage/logservice_detail.pug'
+	model = LogService
 
 class ServiceListView(ListView):
-	models = LogService
+	#template_name = 'homepage/logservice_list.pug'
+	model = LogService
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs)
 		return qs
 
+class NewServiceView(CreateView):
+	template_name = 'homepage/logservice_form.pug'
+	model = LogService
+	form_class = LogServiceForm
+	#fields = ['hours','date_delivery','time_entry']
 
-class Service(TemplateView):
-	template_name='service.pug'
-	def get_context_data(self, *args, **kwargs):
-		context = super(ClassHistoryTemplateView, self).get_context_data(*args,**kwargs)
-		context = {
-			"el_titulo":'hola Mundo'
-		}
-		return context
+
+
 
 
 
@@ -60,6 +52,8 @@ class Service(TemplateView):
 # 		die =form_data.get('direction')
 # 		obj = LogServiceForm.objects.create(hours=hou, date_delivery=dat, time_entry=tim, direction=die)
 
+# template_name='service.pug'
+
 # 	context = {
 # 		"el_form":form,
 # 		"titulo":titulo
@@ -72,8 +66,16 @@ class Service(TemplateView):
 #     games = serialize("json",LogGame.objects.all())
 #     return HttpResponse(games, content_type="application/json")
 
-@login_required(login_url="/accounts/login/?next=/")
-def func_get_users(request):
-	users = serialize("json",User.objects.all())
-	return HttpResponse(users, content_type="application/json")
+# class ClassHistoryTemplateView(LoginRequiredMixin, TemplateView):
+# 	template_name = "history.pug"
+# 	def get_context_data(self, *args, **kwargs):
+# 		context = super(ClassHistoryTemplateView, self).get_context_data(*args,**kwargs)
+# 		context["titulo"]='Hola Mundo'
+# 		return context
+
+
+# @login_required(login_url="/accounts/login/?next=/")
+# def func_get_users(request):
+# 	users = serialize("json",User.objects.all())
+# 	return HttpResponse(users, content_type="application/json")
 	

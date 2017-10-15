@@ -1,5 +1,5 @@
 //| {% extends "layout.pug" %}
-| {% load i18n %}
+//| {% load i18n %}
 //| {% load material_form %}
 | {% block content %}
 .row
@@ -8,6 +8,6 @@
       form.material(method='post')
         | {% csrf_token %}
         //| {% form form=el_form %}  {% endform %}
-        {{ el_form }}
+        {{ el_form.asp }}
         input.waves-effect.waves-light.btn(type='submit', value='Postular')
 | {% endblock %}
