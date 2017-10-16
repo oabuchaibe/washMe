@@ -17,12 +17,13 @@ CHOICES = (
 
 fecha2 = date.today() + timedelta(days=2)
 
-class LogService(models.Model):
+class Service(models.Model):
 	hours = models.CharField(max_length=255, choices=CHOICES ,default='2')
 	date_delivery = models.DateField(default=fecha2)
 	time_entry = models.TimeField('Hora')
 	direction = models.CharField(max_length=5000)
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+
 
 	def __str__(self):
 	 	return str(self.date_delivery)

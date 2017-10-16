@@ -2,14 +2,14 @@
 {% load material_form %}
 {% load i18n %}
 {% block content %}
-<h3 >Login</h3>
+<h3 >{% trans 'Log in' %} </h3>
   <div>
     <form method="post" action=".">{% csrf_token %} 
       {% form form=form %}  {% endform %}
-      <input type="submit" value="{% trans 'Log In' %}" class="btn" />
+      <input type="submit" value="{% trans 'Log in' %}" class="btn" />
       <input type="hidden" name="next" value="{{ next }}" />
     </form>  
-    <p> <a href="{% url 'auth_password_reset' %}">{% trans "Forgot account?" %}</a></p>
-    <p >{% trans "Do not have an account" %}? <a href="{% url 'registration_register' %}">{% trans " Sign up" %}</a></p>
+    <p> <a href="{% url 'auth_password_reset' %}">{% trans 'Forgot account ?' %}</a></p>
+    <p >{% trans 'Do not have an account' %} ? <a href="{% url 'registration_register' %}">{% trans "Sign up" %}</a></p>
   </div>
 {% endblock %}

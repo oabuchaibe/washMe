@@ -1,0 +1,16 @@
+|{% extends "layout.pug" %}
+|{% load i18n %}
+|{% block content %}
+
+ul
+{% for object in object_list %}
+li {{ object|upper }}
+	p
+		a(href="{{ object.get_absolute_url }}") Deatalle
+|{% empty %}
+h3 Empty State 
+|{% endfor %}
+
+a.btn-floating.btn-large.waves-effect.waves-light.red(href="{% url 'new_service' %}")
+	i.material-icons add
+|{% endblock %}

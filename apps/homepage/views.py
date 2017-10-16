@@ -4,15 +4,17 @@ from django.core.urlresolvers import reverse
 from django.utils.decorators import method_decorator
 from django.http import HttpResponse
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.models import User
 from django.views.generic import TemplateView
-from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from .models import LogService
-from .logForms import LogServiceForm
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from .models import Service
+from .Forms import ServiceForm
 
 class LoginRequiredMixin(object):
 	@method_decorator(login_required)
@@ -25,30 +27,30 @@ class StaffRequiredMixin(object):
 		return super(StaffRequiredMixin,self).dispatch(request,*args,**kwargs)
 
 class Detail(LoginRequiredMixin,DetailView):
-	template_name = 'homepage/logservice_detail.pug'
-	model = LogService
-
+	template_name = 'homepage/service_detail.pug'
+	model = Service
 
 class ServiceListView(LoginRequiredMixin,ListView):
-	model = LogService
+	template_name  = 'homepage/service_list.pug'
+	model = Service
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs)
 		return qs
 
 class NewServiceView(LoginRequiredMixin,CreateView):
-	template_name = 'homepage/logservice_form.pug'
-	form_class = LogServiceForm
+	template_name = 'homepage/service_form.pug'
+	form_class = ServiceForm
 	def get_success_url(self):
 		return reverse('home')
 
 class SeviceUpdateView(LoginRequiredMixin,UpdateView):
-	template_name = 'homepage/logservice_form.pug'
-	model = LogService
-	form_class = LogServiceForm
-
+	template_name = 'homepage/service_form.pug'
+	model = Service
+	form_class = ServiceForm
 
 class ServiceDeleteView(LoginRequiredMixin,DeleteView):
-	model = LogService
+	template_name = 'homepage/service_confirm_delete.pug'
+	model = Service
 	def get_success_url(self):
 		return reverse('home')
 

@@ -3,7 +3,7 @@
 {% load material_form %}
 {% block content %}
 <div ></div> 
-   <h3 >Sign up</h3>
+   <h3 >{% trans 'Sign up' %}</h3>
 	<form method="post" action=".">{% csrf_token %}
 	  	{% form form=form %}  {% endform %}
 	<br>  	
