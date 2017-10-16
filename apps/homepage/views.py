@@ -5,6 +5,7 @@ from django.utils.decorators import method_decorator
 from django.http import HttpResponse
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
@@ -18,32 +19,38 @@ class LoginRequiredMixin(object):
 	def dispatch(self,request,*args,**kwargs):
 		return super(LoginRequiredMixin,self).dispatch(request,*args,**kwargs)
 
-class Detail(DetailView):
+class StaffRequiredMixin(object):
+	@method_decorator(staff_member_required)
+	def dispatch(self,request,*args,**kwargs):
+		return super(StaffRequiredMixin,self).dispatch(request,*args,**kwargs)
+
+class Detail(LoginRequiredMixin,DetailView):
 	template_name = 'homepage/logservice_detail.pug'
 	model = LogService
 
-class ServiceListView(ListView):
+
+class ServiceListView(LoginRequiredMixin,ListView):
 	model = LogService
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs)
 		return qs
 
-class NewServiceView(CreateView):
+class NewServiceView(LoginRequiredMixin,CreateView):
 	template_name = 'homepage/logservice_form.pug'
 	form_class = LogServiceForm
 	def get_success_url(self):
 		return reverse('home')
 
-class SeviceUpdateView(UpdateView):
+class SeviceUpdateView(LoginRequiredMixin,UpdateView):
 	template_name = 'homepage/logservice_form.pug'
 	model = LogService
 	form_class = LogServiceForm
 
-class ServiceDeleteView(DeleteView):
+
+class ServiceDeleteView(LoginRequiredMixin,DeleteView):
 	model = LogService
 	def get_success_url(self):
 		return reverse('home')
-
 
 
 # @login_required(login_url="/accounts/login/?next=/")

@@ -1,10 +1,16 @@
 | {% extends "layout.pug" %}
 | {% load i18n %}
-{% block content %}
 
-{{ object.hours }}
-{{ object.date_delivery }}
-{{ object.time_entry }}
-{{ object.direction }}
+{% block content %}
+br
+h5 Horas : {{ object.hours }}
+br
+h5 Fecha de Limpiesa : {{ object.date_delivery }}
+br
+h5 Hora de Entrada : {{ object.time_entry }}
+br
+h5 Direccion : {{ object.direction }}
+br
+h5 Fecha de Creacion : {{ object.timestamp }}
 
 {% endblock %}
