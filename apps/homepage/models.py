@@ -2,7 +2,8 @@ from __future__ import unicode_literals
 
 from datetime import datetime, date, time, timedelta
 import calendar
-import datetime
+
+
 from django.conf import settings
 from django.db import models
 
