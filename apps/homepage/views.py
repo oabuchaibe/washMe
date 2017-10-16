@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.core.serializers import serialize
+from django.core.urlresolvers import reverse
 from django.utils.decorators import method_decorator
 from django.http import HttpResponse
 from django.conf import settings
@@ -7,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from .models import LogService
 from .logForms import LogServiceForm
@@ -22,7 +23,6 @@ class Detail(DetailView):
 	model = LogService
 
 class ServiceListView(ListView):
-	#template_name = 'homepage/logservice_list.pug'
 	model = LogService
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs)
@@ -30,13 +30,19 @@ class ServiceListView(ListView):
 
 class NewServiceView(CreateView):
 	template_name = 'homepage/logservice_form.pug'
+	form_class = LogServiceForm
+	def get_success_url(self):
+		return reverse('home')
+
+class SeviceUpdateView(UpdateView):
+	template_name = 'homepage/logservice_form.pug'
 	model = LogService
 	form_class = LogServiceForm
-	#fields = ['hours','date_delivery','time_entry']
 
-
-
-
+class ServiceDeleteView(DeleteView):
+	model = LogService
+	def get_success_url(self):
+		return reverse('home')
 
 
 

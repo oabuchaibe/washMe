@@ -24,8 +24,8 @@ class LogService(models.Model):
 	time_entry = models.TimeField('Hora', blank=True, null=True)
 	direction = models.CharField(max_length=5000, blank=True, null=True)
 
-	# def __str__(self):
-	# 	return self.direction
+	def __str__(self):
+	 	return str(self.date_delivery)
 
 	def get_absolute_url(self):
 		view_name = 'detail'
