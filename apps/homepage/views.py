@@ -26,29 +26,29 @@ class StaffRequiredMixin(object):
 	def dispatch(self,request,*args,**kwargs):
 		return super(StaffRequiredMixin,self).dispatch(request,*args,**kwargs)
 
-class Detail(LoginRequiredMixin,DetailView):
+class Detail(DetailView):
 	template_name = 'homepage/service_detail.pug'
 	model = Service
 
-class ServiceListView(LoginRequiredMixin,ListView):
+class ServiceListView(ListView):
 	template_name  = 'homepage/service_list.pug'
 	model = Service
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs)
 		return qs
 
-class NewServiceView(LoginRequiredMixin,CreateView):
+class NewServiceView(CreateView):
 	template_name = 'homepage/service_form.pug'
 	form_class = ServiceForm
 	def get_success_url(self):
 		return reverse('home')
 
-class SeviceUpdateView(LoginRequiredMixin,UpdateView):
+class SeviceUpdateView(UpdateView):
 	template_name = 'homepage/service_form.pug'
 	model = Service
 	form_class = ServiceForm
 
-class ServiceDeleteView(LoginRequiredMixin,DeleteView):
+class ServiceDeleteView(DeleteView):
 	template_name = 'homepage/service_confirm_delete.pug'
 	model = Service
 	def get_success_url(self):
