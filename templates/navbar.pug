@@ -5,7 +5,7 @@ nav
     ul#nav-mobile.right.hide-on-med-and-down	
       |{% if request.user.is_authenticated %}
       li
-        a(href="{% url 'auth_password_change' %}") {% trans 'Change  Password' %}
+        a(href="{% url 'auth_password_change' %}") {% trans 'Change password' %}
       li
         a(href="{% url 'auth_logout' %}") {% trans 'Log out' %}
       |{% else %}

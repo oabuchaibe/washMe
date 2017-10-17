@@ -17,7 +17,7 @@ CHOICES = (
 fecha2 = date.today() + timedelta(days=2)
 
 class Service(models.Model):
-	hours = models.CharField('Numeo De horas',max_length=255, choices=CHOICES ,default='2')
+	hours = models.CharField('Numero De horas',max_length=255, choices=CHOICES ,default='2')
 	date_delivery = models.DateField('Fecha de Limpieza',default=fecha2)
 	time_entry = models.TimeField('Hora')
 	direction = models.CharField(max_length=5000)
