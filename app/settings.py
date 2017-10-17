@@ -35,7 +35,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.environ['EMAILHOSTUSERDJANGO']
 EMAIL_HOST_PASSWORD = os.environ['EMAILPASS']
 EMAIL_PORT = 587
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = True
 
 
 ALLOWED_HOSTS = ['*']
@@ -120,7 +120,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'washme12',
+        'NAME': 'washme1',
         'USER': 'postgres',
         'PASSWORD': '123',
         'HOST': 'localhost',
@@ -177,7 +177,7 @@ STATIC_ROOT = os.path.join((BASE_DIR), "venv","static_env","static_root")
 MEDIA_ROOT = os.path.join((BASE_DIR),  "venv","static_env","media_root")
 
 SITE_ID=1
-
+REGISTRATION_FORM_PATH = 'myapp.forms.CustomForm'
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 SITE_ID = 1

@@ -1,11 +1,10 @@
 from django import forms
 from .models import Service
 from .models import CHOICES
-
 from datetime import datetime, date, time, timedelta
 import calendar
 import pytz
-
+from django.utils import timezone
 
 
 class ServiceForm(forms.ModelForm):
@@ -26,14 +25,6 @@ class ServiceForm(forms.ModelForm):
 		current_date = ct.strftime("%Y-%m-%d")
 		if ( str(date_d)  < str(current_date) ):
 			raise forms.ValidationError('no hacemos viajes en el tiempo')
-		return date_d	
-			
+		return date_d
 
-
-
-		
-
-		
-
-
-	
+	#def cleaned_	

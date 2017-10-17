@@ -33,6 +33,8 @@ class Detail(DetailView):
 class ServiceListView(ListView):
 	template_name  = 'homepage/service_list.pug'
 	model = Service
+
+    
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs)
 		return qs
@@ -40,6 +42,21 @@ class ServiceListView(ListView):
 class NewServiceView(CreateView):
 	template_name = 'homepage/service_form.pug'
 	form_class = ServiceForm
+
+	def post(self, request, *args, **kwargs):
+		form_class = self.get_form_class()
+		form = self.get_form(form_class)
+		if form.is_valid():
+			return self.form_valid(form, **kwargs)
+		else:
+			return self.form_invalid(form, **kwargs)	
+
+
+	# def form_valid(self, form):
+	# 	form.instance.created_by = self.request.user
+	# 	return super(AuthorCreate, self).form_valid(form)
+
+
 	def get_success_url(self):
 		return reverse('home')
 
