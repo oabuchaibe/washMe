@@ -26,11 +26,11 @@ class StaffRequiredMixin(object):
 	def dispatch(self,request,*args,**kwargs):
 		return super(StaffRequiredMixin,self).dispatch(request,*args,**kwargs)
 
-class Detail(DetailView):
+class Detail(LoginRequiredMixin,DetailView):
 	template_name = 'homepage/service_detail.pug'
 	model = Service
 
-class ServiceListView(ListView):
+class ServiceListView(LoginRequiredMixin,ListView):
 	template_name  = 'homepage/service_list.pug'
 	model = Service
 
@@ -39,17 +39,17 @@ class ServiceListView(ListView):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs)
 		return qs
 
-class NewServiceView(CreateView):
+class NewServiceView(LoginRequiredMixin,CreateView):
 	template_name = 'homepage/service_form.pug'
 	form_class = ServiceForm
 
-	def post(self, request, *args, **kwargs):
-		form_class = self.get_form_class()
-		form = self.get_form(form_class)
-		if form.is_valid():
-			return self.form_valid(form, **kwargs)
-		else:
-			return self.form_invalid(form, **kwargs)	
+	# def post(self, request, *args, **kwargs):
+	# 	form_class = self.get_form_class()
+	# 	form = self.get_form(form_class)
+	# 	if form.is_valid():
+	# 		return self.form_valid(form, **kwargs)
+	# 	else:
+	# 		return self.form_invalid(form, **kwargs)	
 
 
 	# def form_valid(self, form):
@@ -60,12 +60,12 @@ class NewServiceView(CreateView):
 	def get_success_url(self):
 		return reverse('home')
 
-class SeviceUpdateView(UpdateView):
+class SeviceUpdateView(LoginRequiredMixin,UpdateView):
 	template_name = 'homepage/service_form.pug'
 	model = Service
 	form_class = ServiceForm
 
-class ServiceDeleteView(DeleteView):
+class ServiceDeleteView(LoginRequiredMixin,DeleteView):
 	template_name = 'homepage/service_confirm_delete.pug'
 	model = Service
 	def get_success_url(self):
