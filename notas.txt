@@ -11,3 +11,5 @@
    <input type="submit" value="Confirmar" class="btn" />
    <a href="{{ object.get_absolute_url }}" class="btn" >Cancelar</a> 
  </form>
+
+ 

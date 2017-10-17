@@ -30,6 +30,7 @@ class Detail(LoginRequiredMixin,DetailView):
 	template_name = 'homepage/service_detail.pug'
 	model = Service
 
+
 class ServiceListView(LoginRequiredMixin,ListView):
 	template_name  = 'homepage/service_list.pug'
 	model = Service
