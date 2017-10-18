@@ -15,6 +15,9 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from .models import Service
 from .Forms import ServiceForm
+from django.core.exceptions import ValidationError
+from django.contrib.messages.views import SuccessMessageMixin
+#from django.forms.util import ErrorList
 #from material import LayoutMixin, Layout, Fieldset, Row, Span2, Span5, Span7
 
 from material import (
@@ -62,13 +65,13 @@ class ServiceDeleteView(LoginRequiredMixin,DeleteView):
 class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 	template_name = 'homepage/service_form.pug'
 	model = Service
-	fields = ['hours', 'date_delivery', 'time_entry', 'direction']
+	form_class = ServiceForm
+	
 
 	def form_valid(self, form):
 		form.instance.owner = self.request.user
-		#form.instance.created_date = datetime.now()
-		return super(NewServiceView, self).form_valid(form)
-
+		return super(NewServiceView, self).form_valid(form) 
+		
 	def get_form(self):
 		form = super(NewServiceView, self).get_form(self.form_class)
 		form.fields['date_delivery'].widget.attrs.update({'class': 'datepicker'})

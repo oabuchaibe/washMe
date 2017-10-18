@@ -27,7 +27,7 @@ ahora = datetime.now()
 mas_3h = ahora + racion_de_3h
 mas_3h = mas_3h.strftime('%H:%M')
 class Service(models.Model):
-	hours         = models.CharField(max_length=255, choices=CHOICES ,default='2')
+	hours         = models.CharField(verbose_name='Horas',max_length=255, choices=CHOICES ,default='2')
 	date_delivery = models.DateField(default=datetime.now().strftime("%Y-%m-%d"))
 	time_entry    = models.TimeField(default=mas_3h)
 	direction     = models.CharField(max_length=5000)
