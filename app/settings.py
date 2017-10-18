@@ -38,7 +38,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['192.168.43.34','127.0.0.1']
 
 
 # Application definition
@@ -120,7 +120,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'washme4',
+        'NAME': 'washme',
         'USER': 'postgres',
         'PASSWORD': '123',
         'HOST': 'localhost',
@@ -152,7 +152,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'America/Bogota'
 

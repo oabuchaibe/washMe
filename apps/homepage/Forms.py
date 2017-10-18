@@ -9,8 +9,8 @@ from django.utils import timezone
 
 class ServiceForm(forms.ModelForm):
 	class Meta:
-		model = Service
-		fields = ['hours', 'date_delivery', 'time_entry', 'direction']	
+		#model = Service
+		#fields = ['hours', 'date_delivery', 'time_entry', 'direction']	
 		widgets = {
             'date_delivery': forms.DateInput(attrs={'class': 'datepicker'}),
             'time_entry': forms.TimeInput(attrs={'class':'timepicker'}),
