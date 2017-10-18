@@ -21,14 +21,15 @@ CHOICES = (
         )
 
 #fecha2 = date.today() + timedelta(days=2)
+
 racion_de_3h = timedelta(hours=3)
 ahora = datetime.now()
 mas_3h = ahora + racion_de_3h
-
+mas_3h = mas_3h.strftime('%H:%M')
 class Service(models.Model):
-	hours         = models.CharField('Numero De horas',max_length=255, choices=CHOICES ,default='2')
-	date_delivery = models.DateField('Fecha de Limpieza',default=datetime.now().strftime("%Y-%m-%d"))
-	time_entry    = models.TimeField('Hora',default=mas_3h)
+	hours         = models.CharField(max_length=255, choices=CHOICES ,default='2')
+	date_delivery = models.DateField(default=datetime.now().strftime("%Y-%m-%d"))
+	time_entry    = models.TimeField(default=mas_3h)
 	direction     = models.CharField(max_length=5000)
 	created       = models.DateTimeField(auto_now_add=True)
 	owner         = models.ForeignKey(User, null=True, blank=True)

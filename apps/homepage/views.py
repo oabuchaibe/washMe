@@ -15,6 +15,13 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from .models import Service
 from .Forms import ServiceForm
+#from material import LayoutMixin, Layout, Fieldset, Row, Span2, Span5, Span7
+
+from material import (
+    Layout, Fieldset, Row, Column, Span, Field,
+    Span2, Span3, Span4, Span5, Span6, Span7,
+    Span8, Span9, Span10, Span11, Span12,
+    LayoutMixin)
 
 class LoginRequiredMixin(object):
 	@method_decorator(login_required)
@@ -40,21 +47,6 @@ class ServiceListView(LoginRequiredMixin,ListView):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs)
 		return qs
 
-class NewServiceView(LoginRequiredMixin,CreateView):
-	template_name = 'homepage/service_form.pug'
-	model = Service
-	fields = ['hours', 'date_delivery', 'time_entry', 'direction']
-
-	def form_valid(self, form):
-		form.instance.owner = self.request.user
-		#form.instance.created_date = datetime.now()
-		return super(NewServiceView, self).form_valid(form)
-
-	def get_success_url(self):
-		return reverse('home')
-
-	
-
 class SeviceUpdateView(LoginRequiredMixin,UpdateView):
 	template_name = 'homepage/service_form.pug'
 	model = Service
@@ -67,43 +59,28 @@ class ServiceDeleteView(LoginRequiredMixin,DeleteView):
 	def get_success_url(self):
 		return reverse('home')
 
+class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
+	template_name = 'homepage/service_form.pug'
+	model = Service
+	fields = ['hours', 'date_delivery', 'time_entry', 'direction']
 
-# @login_required(login_url="/accounts/login/?next=/")
-# def new_service_view(request):
-# 	titulo="Nuevo Servicio"
-# 	form =  LogServiceForm(request.POST or None)
-# 	if form.is_valid():
-# 		form_data = form.cleaned_data
-# 		hou =form_data.get('hours')
-# 		dat =form_data.get('date_delivery')
-# 		tim =form_data.get('time_entry')
-# 		die =form_data.get('direction')
-# 		obj = LogServiceForm.objects.create(hours=hou, date_delivery=dat, time_entry=tim, direction=die)
+	def form_valid(self, form):
+		form.instance.owner = self.request.user
+		#form.instance.created_date = datetime.now()
+		return super(NewServiceView, self).form_valid(form)
 
-# template_name='service.pug'
+	def get_form(self):
+		form = super(NewServiceView, self).get_form(self.form_class)
+		form.fields['date_delivery'].widget.attrs.update({'class': 'datepicker'})
+		form.fields['time_entry'].widget.attrs.update({'class': 'timepicker'})
+		form.fields['direction'].widget.attrs.update({'onFocus': 'geolocate()'})
+		return form
 
-# 	context = {
-# 		"el_form":form,
-# 		"titulo":titulo
-# 	}
-# 	return render(request,"loggame_form.pug",context)
+	def get_success_url(self):
+		return reverse('home')
 
-	
-# @login_required(login_url="/accounts/login/?next=/")
-# def func_games(request):
-#     games = serialize("json",LogGame.objects.all())
-#     return HttpResponse(games, content_type="application/json")
-
-# class ClassHistoryTemplateView(LoginRequiredMixin, TemplateView):
-# 	template_name = "history.pug"
-# 	def get_context_data(self, *args, **kwargs):
-# 		context = super(ClassHistoryTemplateView, self).get_context_data(*args,**kwargs)
-# 		context["titulo"]='Hola Mundo'
-# 		return context
-
-
-# @login_required(login_url="/accounts/login/?next=/")
-# def func_get_users(request):
-# 	users = serialize("json",User.objects.all())
-# 	return HttpResponse(users, content_type="application/json")
-	
+	layout = Layout(
+		Row('hours'),
+		Row('date_delivery','time_entry'),
+		Row('direction'),
+		)
