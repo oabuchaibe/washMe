@@ -12,4 +12,16 @@
     <p> <a href="{% url 'auth_password_reset' %}">{% trans 'Forgot account ?' %}</a></p>
     <p >{% trans 'Do not have an account' %} ? <a href="{% url 'registration_register' %}">{% trans "Sign up" %}</a></p>
   </div>
+
+{% block main %}
+ <div>
+ 	 <br>
+  <p><strong>-- OR --</strong></p>
+  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+  <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a>
+ </div>
+{% endblock %}
+ 
+
+
 {% endblock %}

@@ -38,7 +38,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['192.168.43.34','127.0.0.1']
 
 
 # Application definition
@@ -67,6 +67,7 @@ THIRD_PATTY_APPS = (
     'material.frontend',
     'material.admin',
     'crispy_forms',
+    'social_django',  # <--
 )
 
 
@@ -81,6 +82,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',  # <--
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -96,6 +98,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
+                
+                
             ],
             'loaders': [
                 # PyPugJS part:   ##############################
@@ -120,7 +126,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'washme4',
+        'NAME': 'washme',
         'USER': 'postgres',
         'PASSWORD': '123',
         'HOST': 'localhost',
@@ -128,7 +134,14 @@ DATABASES = {
         'CHARSET':'UTF8',
     }
 }
+########33
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
 
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -152,7 +165,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'America/Bogota'
 
@@ -183,3 +196,10 @@ REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 SITE_ID = 1
 LOGIN_REDIRECT_URL='/'
 
+#LOGIN_URL = 'login'
+#LOGOUT_URL = 'logout'
+#LOGIN_REDIRECT_URL = 'home'
+
+
+SOCIAL_AUTH_TWITTER_KEY = 'GZRLBBOz845n9awPAKgHTNbSa'
+SOCIAL_AUTH_TWITTER_SECRET = 'N8u5LdLV9vdC4NHw3RZ14MuV0D9syHo77MBh4Nc0oUsvBTTlU7'

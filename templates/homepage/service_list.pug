@@ -10,15 +10,20 @@ div
 			.card
 				.card-image
 					img(src="{% static '/img/m.png' %}")
-					span.card-title 
+
+					span.card-title {{ object.direction }}
+
 					a.btn-floating.halfway-fab.waves-effect.waves-light.red(href='{{ object.get_absolute_url }}')
 						i.material-icons add
 				.card-content
 					p
-						{{ object|upper }}
+
+						| {{ object.owner.username }}
 
 	div
 		| {% empty %}
+		p no hay nada 
+
 
 |{% endfor %}
 
