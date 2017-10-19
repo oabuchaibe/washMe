@@ -1,19 +1,37 @@
 | {% extends "layout.pug" %}
 | {% load i18n %}
+|{% load static %}
 
 {% block content %}
-br
-h5 Horas : {{ object.hours }}
-br
-h5 {% trans 'Fecha de Limpiesa' %}  : {{ object.date_delivery }}
-br
-h5 Hora de Entrada : {{ object.time_entry }}
-br
-h5 Direccion : {{ object.direction }}
-br
-h5 Fecha de Creacion : {{ object.created }}
-br
-
-
+.container
+  .row
+    .col.s12.push-s2
+      img(src="{% static '/img/m.png' %}", width='450', height='300', border-radius='25px')
+      br
+      h7
+        i.small.material-icons av_timer
+        |  Horas : {{ object.hours }}
+      br
+      h7
+        i.small.material-icons date_range
+        |  {% trans 'Fecha de Limpiesa' %}  : {{ object.date_delivery }}
+      br
+      h7
+        i.small.material-icons access_time
+        |  Hora de Entrada : {{ object.time_entry }}
+      br
+      h7
+        i.small.material-icons place
+        |  Direccion : {{ object.direction }}
+      br
+      h7
+        i.small.material-icons access_time
+        |  Fecha de Creacion : {{ object.created }}
+      br
 
 {% endblock %}
+
+
+  
+    
+ 

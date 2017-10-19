@@ -20,3 +20,4 @@ urlpatterns = [
     url(r'^detail/(?P<pk>\d+)/delete/$', ServiceDeleteView.as_view(), name='delete'),
     url(r'^new_service$', NewServiceView.as_view(), name='new_service'),
 ]
+
