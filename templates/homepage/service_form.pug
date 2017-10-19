@@ -9,6 +9,7 @@
         | {% csrf_token %}
         | {% form form=form %}  {% endform %}
         input.waves-effect.waves-light.btn(type='submit', value='Pedir')
+| {% include 'geo.html' %}
 | {% endblock %}
 
 
