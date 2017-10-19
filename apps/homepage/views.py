@@ -75,7 +75,7 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 		form.fields['date_delivery'].widget.attrs.update({'class': 'datepicker'})
 		form.fields['time_entry'].widget.attrs.update({'class': 'timepicker'})
 		#form.fields['direction'].widget.attrs.update({'onFocus': 'geolocate()'})
-		form.fields['direction'].widget.attrs.update({'placeholder': 'DIRECCIÓN'})
+		#form.fields['direction'].widget.attrs.update({'placeholder': 'DIRECCIÓN'})
 		return form
 
 	def get_success_url(self):
