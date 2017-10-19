@@ -5,9 +5,7 @@ from datetime import datetime, date, time, timedelta
 import calendar
 import pytz
 from django.utils import timezone
-
-
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext as _
 
 tz = pytz.timezone('America/Bogota')
 ct = datetime.now(tz=tz)
@@ -19,13 +17,14 @@ racion_de_3h = timedelta(hours=3)
 mas_3h = current_time_not_format + racion_de_3h
 mas_3h = mas_3h.strftime('%H:%M')
 
-output = _('fecha incorrecta')
-mej_err_time =_('time')
+output = _('Seleccione una fecha correcta.')
+msm_err = _('Seleccione una hora correcta.')
+msm_hr = _('La hora seleccionada ya paso.')
 
 class ServiceForm(forms.ModelForm):
 	class Meta:
 		model = Service
-		fields = ['hours', 'date_delivery', 'time_entry', 'direction']	
+		fields = ['hours', 'date_delivery', 'time_entry', 'direction']
 
 	def clean_date_delivery(self):
 		date_d = self.cleaned_data.get('date_delivery')
@@ -37,10 +36,10 @@ class ServiceForm(forms.ModelForm):
 		time_e = self.cleaned_data.get('time_entry')
 		date_d_t = self.cleaned_data.get('date_delivery')
 		if ((str(current_time)==str(time_e)) and ( str(current_date)== str(date_d_t))):
-			raise forms.ValidationError(mej_err_time)
+			raise forms.ValidationError(msm_err)
 		if ((str(time_e)<str(current_time)) and (str(current_date)==str(date_d_t))):
-			raise forms.ValidationError(mej_err_time)
+			raise forms.ValidationError(msm_hr)
 		if ((str(time_e) < str(mas_3h)) and ( str(current_date)== str(date_d_t))):
-			raise forms.ValidationError(str('para hoy hay servicios desde  {}'.format(mas_3h)))
+			raise forms.ValidationError(str('Para hoy hay servicios desde  {}'.format(mas_3h)))
 
 		return time_e
