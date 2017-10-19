@@ -60,22 +60,22 @@ class ServiceDeleteView(LoginRequiredMixin,DeleteView):
 		return reverse('home')
 
 class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
-	
+
 	template_name = 'homepage/service_form.pug'
 	model = Service
 	form_class = ServiceForm
-	
+
 	def form_valid(self, form):
 		form.instance.owner = self.request.user
-		return super(NewServiceView, self).form_valid(form) 
-		
+		return super(NewServiceView, self).form_valid(form)
+
 	def get_form(self):
 		#msj_direction_placeholder=_('address')
 		form = super(NewServiceView, self).get_form(self.form_class)
 		form.fields['date_delivery'].widget.attrs.update({'class': 'datepicker'})
 		form.fields['time_entry'].widget.attrs.update({'class': 'timepicker'})
 		#form.fields['direction'].widget.attrs.update({'onFocus': 'geolocate()'})
-		#form.fields['direction'].widget.attrs.update({'placeholder': 'DIRECCIÓN'})
+		form.fields['direction'].widget.attrs.update({'placeholder': 'Ingresa Una Ubicación'})
 		return form
 
 	def get_success_url(self):
@@ -86,4 +86,3 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 		Row('date_delivery','time_entry'),
 		Row('direction'),
 		)
-	

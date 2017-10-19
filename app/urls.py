@@ -23,3 +23,4 @@ urlpatterns = [
     url(r'^new_service$', NewServiceView.as_view(), name='new_service'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
 ]
+

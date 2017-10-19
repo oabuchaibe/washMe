@@ -6,16 +6,20 @@
 div
 	| {% for object in object_list %}
 	.row
-		.col.s12.m6
+		.col.s12.m6.push-m3
 			.card
 				.card-image
 					img(src="{% static '/img/m.png' %}")
+
 					span.card-title {{ object.direction }}
+
 					a.btn-floating.halfway-fab.waves-effect.waves-light.red(href='{{ object.get_absolute_url }}')
 						i.material-icons add
 				.card-content
 					p
+
 						| {{ object.owner.username }}
+
 	div
 		| {% empty %}
 		p no hay nada 
