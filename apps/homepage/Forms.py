@@ -19,7 +19,8 @@ racion_de_3h = timedelta(hours=3)
 mas_3h = current_time_not_format + racion_de_3h
 mas_3h = mas_3h.strftime('%H:%M')
 
-output = _('name')
+output = _('fecha incorrecta')
+mej_err_time =_('time')
 
 class ServiceForm(forms.ModelForm):
 	class Meta:
@@ -36,9 +37,9 @@ class ServiceForm(forms.ModelForm):
 		time_e = self.cleaned_data.get('time_entry')
 		date_d_t = self.cleaned_data.get('date_delivery')
 		if ((str(current_time)==str(time_e)) and ( str(current_date)== str(date_d_t))):
-			raise forms.ValidationError('No Hacemos viajes en el tiempo')
+			raise forms.ValidationError(mej_err_time)
 		if ((str(time_e)<str(current_time)) and (str(current_date)==str(date_d_t))):
-			raise forms.ValidationError('No Hacemos viajes en el tiempo')
+			raise forms.ValidationError(mej_err_time)
 		if ((str(time_e) < str(mas_3h)) and ( str(current_date)== str(date_d_t))):
 			raise forms.ValidationError(str('para hoy hay servicios desde  {}'.format(mas_3h)))
 
