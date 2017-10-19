@@ -10,12 +10,12 @@ div
 			.card
 				.card-image
 					img(src="{% static '/img/m.png' %}")
-					span.card-title {{ object|upper }}
+					span.card-title {{ object.direction }}
 					a.btn-floating.halfway-fab.waves-effect.waves-light.red(href='{{ object.get_absolute_url }}')
 						i.material-icons add
 				.card-content
 					p
-						| I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+						| {{ object.owner.username }}
 	div
 		| {% empty %}
 		p no hay nada 
