@@ -6,10 +6,10 @@
   <div>
     <form method="post" action=".">{% csrf_token %} 
       {% form form=form %}  {% endform %}
-      <input type="submit" value="{% trans 'Log in' %}" class="btn" />
+      <input class="waves-effect waves-light btn-large" type="submit" value="{% trans 'Log in' %}" class="btn" />
       <input type="hidden" name="next" value="{{ next }}" />
     </form>  
-    <p> <a href="{% url 'auth_password_reset' %}">{% trans 'Forgot account ?' %}</a></p>
+    <p> <a  href="{% url 'auth_password_reset' %}  ">{% trans 'Forgot account ?' %}</a></p>
     <p >{% trans 'Do not have an account' %} ? <a href="{% url 'registration_register' %}">{% trans "Sign up" %}</a></p>
   </div>
 
@@ -17,8 +17,15 @@
  <div>
  	 <br>
   <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
-  <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a>
+  
+
+
+
+<a class="waves-effect waves-light btn-large" href="{% url 'social:begin' 'twitter' %}" >
+<i class="fa fa-twitter"></i> {% trans 'Login with Twitter ' %}</a>
+         
+
+
  </div>
 {% endblock %}
  

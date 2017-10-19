@@ -1,3 +1,4 @@
+import goslate
 from django import forms
 from .models import Service
 from .models import CHOICES
@@ -5,9 +6,8 @@ from datetime import datetime, date, time, timedelta
 import calendar
 import pytz
 from django.utils import timezone
-
-
 from django.utils.translation import ugettext_lazy as _
+
 
 tz = pytz.timezone('America/Bogota')
 ct = datetime.now(tz=tz)
@@ -19,7 +19,7 @@ racion_de_3h = timedelta(hours=3)
 mas_3h = current_time_not_format + racion_de_3h
 mas_3h = mas_3h.strftime('%H:%M')
 
-output = _('name')
+#output = _('name')
 
 class ServiceForm(forms.ModelForm):
 	class Meta:
@@ -29,7 +29,7 @@ class ServiceForm(forms.ModelForm):
 	def clean_date_delivery(self):
 		date_d = self.cleaned_data.get('date_delivery')
 		if str(date_d)< str(current_date):
-			raise forms.ValidationError(output)
+			raise forms.ValidationError(m)
 		return date_d
 
 	def clean_time_entry(self):
