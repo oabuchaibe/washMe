@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 from material.frontend import urls as frontend_urls
-
+from registration.backends.default.views import RegistrationView
 from django.contrib.auth import views as auth_views
 
 from apps.homepage.views import (
@@ -13,9 +13,26 @@ from apps.homepage.views import (
     ServiceDeleteView,
  )
 
+
+
+
+#from apps.washer.forms import ExRegistrationForm
+from registration.backends.default.views import RegistrationView
+ 
+
+
+
 urlpatterns = [
+     url(r'washer/register/$', 
+         RegistrationView.as_view(template_name  = 'washer/registration_form.html'), 
+         name = 'registration_register2'),
+
+    #     RegistrationView.as_view(form_class = ExRegistrationForm), 
+    #     name = 'registration_register'),  
+
     url(r'^admin/', admin.site.urls),
-    url(r'^accounts/', include('registration.backends.default.urls')), 
+    url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^washer/', include('registration.backends.default.urls')),
     url(r'^$', ServiceListView.as_view(), name='home'),
     url(r'^detail/(?P<pk>\d+)/$', Detail.as_view(), name='detail'),
     url(r'^detail/(?P<pk>\d+)/update/$', SeviceUpdateView.as_view(), name='update'),

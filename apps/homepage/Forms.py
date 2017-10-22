@@ -4,6 +4,7 @@ import pytz
 from django import forms
 from django.utils import timezone
 from django.utils.translation import gettext as _
+
 from .models import Service
 from .models import CHOICES
 from datetime import datetime, date, time, timedelta
@@ -23,11 +24,10 @@ racion_de_1d = timedelta(days=1)
 mas_1d = current_date_not_format + racion_de_1d
 mas_1d = mas_1d.strftime('%Y-%m-%d')
 
-
-
 output = _('Seleccione una fecha correcta.')
 msm_err = _('Seleccione una hora correcta.')
 msm_hr = _('La hora seleccionada ya paso.')
+
 
 
 class ServiceForm(forms.ModelForm):
@@ -69,5 +69,6 @@ class ServiceForm(forms.ModelForm):
 		if ((str(time_e) < str(mas_3h)) and ( str(current_date)== str(date_d_t))):
 			raise forms.ValidationError(str('Para hoy hay servicios desde  {}'.format(mas_3h)))
 		return time_e
+
 
 #'horios 07:00 - 19:00'

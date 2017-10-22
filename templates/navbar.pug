@@ -1,7 +1,13 @@
 |{% load i18n %}
 nav
   .nav-wrapper
-    a.brand-logo(href="{% url 'home' %}") Logo
+    a.brand-logo(href="{% url 'home' %}")
+      |{% if request.user.is_authenticated %}
+      |{{ user.username }}
+      |{% else %}
+      |Logo
+      |{% endif %}
+            
     ul#nav-mobile.right.hide-on-med-and-down	
       |{% if request.user.is_authenticated %}
       li

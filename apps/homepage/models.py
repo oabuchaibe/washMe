@@ -9,6 +9,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from datetime import datetime
 from django.utils.timezone import utc
+
+
+
+
+
+
 CHOICES = (
         ('2', 'Dos Horas'),
         ('3', 'Tres Horas'),
@@ -32,4 +38,20 @@ class Service(models.Model):
 	def get_absolute_url(self):
 		view_name = 'detail'
 		return reverse(view_name,kwargs={'pk':self.id})
-		
+
+
+
+
+
+
+
+
+
+
+
+
+# class WasherUser(User):
+# 	is_washer = models.BooleanField(default=True)
+# 	is_active = models.BooleanField(default=True)
+# 	is_admin = models.BooleanField(default=False)
+
