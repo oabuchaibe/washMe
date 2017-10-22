@@ -15,21 +15,16 @@ CHOICES = (
         ('8', 'Ocho Horas'),
         )
 
-racion_de_3h = timedelta(hours=3)
-ahora = datetime.now()
-mas_3h = ahora + racion_de_3h
-mas_3h = mas_3h.strftime('%H:%M')
-
 class Service(models.Model):
 	hours         = models.CharField(verbose_name='Horas',max_length=255, choices=CHOICES ,default='2')
 	date_delivery = models.DateField(default=datetime.now().strftime("%Y-%m-%d"))
-	time_entry    = models.TimeField(default=mas_3h)
+	time_entry    = models.TimeField(default='07:00')
 	direction     = models.CharField(max_length=5000)
 	created       = models.DateTimeField(auto_now_add=True)
 	owner         = models.ForeignKey(User, null=True, blank=True)
 
 	class Meta:
-		ordering = ('created',)
+		ordering = ['-created']
 
 	def __str__(self):
 	 	return str(self.date_delivery)

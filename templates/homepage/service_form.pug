@@ -1,7 +1,10 @@
+
 | {% extends "layout.pug" %}
+| {% load staticfiles %}
 | {% load i18n %}
 | {% load material_form %}
 | {% block content %}
+
 .row
 	.col.s12
 		.card-panel.grey.lighten-4
@@ -12,9 +15,8 @@
 					| Submit
 					i.material-icons.right send
 | {% include 'geo.html' %}
+
 | {% endblock %}
-
-
 
 
 

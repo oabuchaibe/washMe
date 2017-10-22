@@ -17,5 +17,6 @@ html(lang='es')
         h2(style='color: #337ab7') {{ titulo }}
         |{% block content %}
         |{% endblock %}
-    | {% include 'javascript.pug' %}    
+    | {% include 'javascript.pug' %}
+  script(src="{% static '/js/formBot.js' %}") 
   //script(src="{% static 'public/bundle.js' %}")

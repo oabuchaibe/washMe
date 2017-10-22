@@ -30,10 +30,6 @@ class StaffRequiredMixin(object):
 	def dispatch(self,request,*args,**kwargs):
 		return super(StaffRequiredMixin,self).dispatch(request,*args,**kwargs)
 
-# @login_required
-# def home(request):
-#     return render(request, 'homepage/service_list.pugl')
-
 class Detail(LoginRequiredMixin,DetailView):
 	template_name = 'homepage/service_detail.pug'
 	model = Service
@@ -44,7 +40,7 @@ class ServiceListView(LoginRequiredMixin,ListView):
 	model = Service
 
 	def get_queryset(self, *args, **kwargs):
-		qs = super(ServiceListView,self).get_queryset(*args,**kwargs)
+		qs = super(ServiceListView,self).get_queryset(*args,**kwargs).filter(owner=self.request.user)
 		return qs
 
 class SeviceUpdateView(LoginRequiredMixin,UpdateView):
@@ -70,12 +66,11 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 		return super(NewServiceView, self).form_valid(form)
 
 	def get_form(self):
-		#msj_direction_placeholder=_('address')
 		form = super(NewServiceView, self).get_form(self.form_class)
 		form.fields['date_delivery'].widget.attrs.update({'class': 'datepicker'})
 		form.fields['time_entry'].widget.attrs.update({'class': 'timepicker'})
-		#form.fields['direction'].widget.attrs.update({'onFocus': 'geolocate()'})
 		form.fields['direction'].widget.attrs.update({'placeholder': 'Ingresa Una Ubicación'})
+		form.fields['hours'].widget.attrs.update({'onchange': 'change()'})
 		return form
 
 	def get_success_url(self):
