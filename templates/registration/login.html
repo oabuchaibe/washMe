@@ -16,17 +16,26 @@
 {% block main %}
  <div>
  	 <br>
-  <p><strong>-- OR --</strong></p>
+  
   
 
 
+</div>
+<div class="row" >
+  <div class=" col s6 m6 l6 ">
+    <p><strong>-- OR --</strong></p>
+    <a class="waves-effect waves-light btn-large" href="{% url 'social:begin' 'twitter' %}" >
+    <i class="fa fa-twitter"></i> {% trans 'Login with Twitter ' %}</a>
+  </div>
 
-<a class="waves-effect waves-light btn-large" href="{% url 'social:begin' 'twitter' %}" >
-<i class="fa fa-twitter"></i> {% trans 'Login with Twitter ' %}</a>
-         
-
-
- </div>
+  <div class="col s6 m6 l6  " >
+    <p><strong>-- Trabajaar  --</strong></p>
+    <a class="waves-effect waves-light btn-large" href="{% url 'washeradd' %}" >
+    <i class="fa fa-address-card-o" aria-hidden="true"></i> {% trans 'washer' %}</a>
+    
+  </div>       
+</div>
+ 
 {% endblock %}
  
 

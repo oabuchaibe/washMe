@@ -57,7 +57,9 @@ DJANGO_CORE_APPS = (
 CORE_APPS = (
     'apps',
     'apps.homepage',
-    'apps.washer',
+    #'apps.washer',
+    #'apps.profiles'
+    'apps.washer'
 )
 
 
@@ -184,6 +186,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
+#MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")

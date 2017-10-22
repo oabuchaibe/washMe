@@ -1,0 +1,18 @@
+{% extends "layout.pug" %}
+{% load material_form %}
+{% load i18n %}
+{% block content %}
+
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+ <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.as_p }}
+        <input class="waves-effect waves-light btn"  type="submit" value="Submit">
+
+    </form>
+</body>
+</html>
+{% endblock %}

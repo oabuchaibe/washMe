@@ -12,32 +12,26 @@ from apps.homepage.views import (
     NewServiceView,
     ServiceDeleteView,
  )
+from apps.washer.views import NewWasherView
 
-
-
-
-#from apps.washer.forms import ExRegistrationForm
-from registration.backends.default.views import RegistrationView
- 
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 
 urlpatterns = [
-     url(r'washer/register/$', 
-         RegistrationView.as_view(template_name  = 'washer/registration_form.html'), 
-         name = 'registration_register2'),
-
-    #     RegistrationView.as_view(form_class = ExRegistrationForm), 
-    #     name = 'registration_register'),  
-
     url(r'^admin/', admin.site.urls),
+   # url(r'accounts/register/$',
+    #    RegistrationView.as_view(form_class = ExRegistrationForm), 
+    #    name = 'registration_register'),
+    url(r'^washer/', NewWasherView.as_view(), name="washeradd"),
+    
     url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^washer/', include('registration.backends.default.urls')),
     url(r'^$', ServiceListView.as_view(), name='home'),
     url(r'^detail/(?P<pk>\d+)/$', Detail.as_view(), name='detail'),
     url(r'^detail/(?P<pk>\d+)/update/$', SeviceUpdateView.as_view(), name='update'),
     url(r'^detail/(?P<pk>\d+)/delete/$', ServiceDeleteView.as_view(), name='delete'),
     url(r'^new_service$', NewServiceView.as_view(), name='new_service'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

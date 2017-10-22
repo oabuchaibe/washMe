@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class WasherConfig(AppConfig):
+class WashConfig(AppConfig):
     name = 'washer'
