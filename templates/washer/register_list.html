@@ -1,0 +1,31 @@
+{% extends "layout.pug" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+
+
+  <div class="slider">
+    <ul class="slides">
+
+      <li>{% for object in object_list %}
+        <img src="/media/{{ object.image }}"> 
+        <div class="caption center-align">
+          <h3>{{ object.first_name }}</h3>
+          <h5 class="light grey-text text-lighten-3">{{ object.last_name }}</h5>
+        </div>
+      </li>
+      <li>{% empty %}
+        <p>Nada Que Ver</p>
+      </li>
+      {% endfor %}
+
+    </ul>
+  </div>
+
+
+
+
+
+{% endblock %}
+
+

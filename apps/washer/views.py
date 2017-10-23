@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import CreateView
 from django.views.generic import TemplateView
+from django.views.generic.list import ListView
 from django.shortcuts import render, redirect 
 from apps.washer.forms import UploadForm
 from apps.washer.models import Register
@@ -39,5 +40,14 @@ class NewWasherView(CreateView):
     )
 
 class HomeDoneView(TemplateView):
-
     template_name = "washer/done.pug"
+
+
+class WasherListView(ListView):
+    #template_name  = 'homepage/service_list.pug'
+    model = Register
+    def get_queryset(self, *args, **kwargs):
+        qs = super(WasherListView,self).get_queryset(*args,**kwargs)
+        return qs
+
+#.filter(status=True)
