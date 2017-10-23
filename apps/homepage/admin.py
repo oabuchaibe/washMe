@@ -9,4 +9,3 @@ class AdminService(admin.ModelAdmin):
 		model = Service
 		
 admin.site.register(Service,AdminService)
-

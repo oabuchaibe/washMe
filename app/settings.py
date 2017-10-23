@@ -31,11 +31,11 @@ DEBUG = True
 
 
 # smtp server settings for gmail
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = os.environ['EMAILHOSTUSERDJANGO']
+EMAIL_HOST          = 'smtp.gmail.com'
+EMAIL_HOST_USER     = os.environ['EMAILHOSTUSERDJANGO']
 EMAIL_HOST_PASSWORD = os.environ['EMAILPASS']
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_PORT          = 587
+EMAIL_USE_TLS       = True
 
 
 ALLOWED_HOSTS = ['192.168.43.34','127.0.0.1']
@@ -101,8 +101,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',  # <--
                 'social_django.context_processors.login_redirect', # <--
-
-
             ],
             'loaders': [
                 # PyPugJS part:   ##############################
@@ -168,44 +166,33 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-co'
 
-TIME_ZONE = 'America/Bogota'
+TIME_ZONE     = 'America/Bogota'
 
-USE_I18N = True
+USE_I18N      = True
 
-USE_L10N = True
+USE_L10N      = True
 
-USE_TZ = True
-
-
-
+USE_TZ        = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-
-#MEDIA_URL = '/media/'
+MEDIA_URL  = '/media/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
-
 STATIC_ROOT = os.path.join((BASE_DIR), "venv","static_env","static_root")
 MEDIA_ROOT = os.path.join((BASE_DIR),  "venv","static_env","media_root")
 
-SITE_ID=1
-REGISTRATION_FORM_PATH = 'myapp.forms.CustomForm'
+SITE_ID                 =1
+REGISTRATION_FORM_PATH  = 'myapp.forms.CustomForm'
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
-SITE_ID = 1
-LOGIN_REDIRECT_URL='/'
+SITE_ID                 = 1
+LOGIN_REDIRECT_URL      ='/'
 
-#LOGIN_URL = 'login'
-#LOGOUT_URL = 'logout'
-#LOGIN_REDIRECT_URL = 'home'
-
-
-SOCIAL_AUTH_TWITTER_KEY = 'GZRLBBOz845n9awPAKgHTNbSa'
+SOCIAL_AUTH_TWITTER_KEY    = 'GZRLBBOz845n9awPAKgHTNbSa'
 SOCIAL_AUTH_TWITTER_SECRET = 'N8u5LdLV9vdC4NHw3RZ14MuV0D9syHo77MBh4Nc0oUsvBTTlU7'

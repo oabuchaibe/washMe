@@ -1,8 +1,6 @@
 from django.contrib import admin
 from .models  import Register
 
-
-
 class AdminWaseher(admin.ModelAdmin):
 	list_display   = ['first_name', 'last_name', 'emiil', 'status', 'working']
 	list_filter    = ['sex', 'status','working']
@@ -10,9 +8,5 @@ class AdminWaseher(admin.ModelAdmin):
 	#list_editable = ['status', 'working']
 	class Meta:
 		model = Register
-		
+
 admin.site.register(Register,AdminWaseher)
-
-
-
-#'first_name', 'last_name', 'emiil', 'phone', 'image','birthday','sex'

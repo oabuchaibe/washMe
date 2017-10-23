@@ -1,9 +1,9 @@
 from django.db import models
 
 SEX_CHOICES = (
-        ('F', 'Female',),
-        ('M', 'Male',),
-        ('U', 'Unsure',),
+    ('F', 'Female',),
+    ('M', 'Male',),
+    ('U', 'Unsure',),
 )
 
 class Register(models.Model):
@@ -17,9 +17,5 @@ class Register(models.Model):
 	working    = models.BooleanField()
 	sex        = models.CharField(max_length=1,choices=SEX_CHOICES)
 	timestamp  = models.DateTimeField(auto_now_add=True)
-
-
-
-
 	def __str__(self):
 		return self.first_name

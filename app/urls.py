@@ -12,16 +12,15 @@ from apps.homepage.views import (
     NewServiceView,
     ServiceDeleteView,
  )
+
 from apps.washer.views import (
     HomeDoneView,
     NewWasherView,
     WasherListView,
-    )
+)
 
 from django.conf import settings
 from django.conf.urls.static import static
-
-
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -37,5 +36,5 @@ urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# Añadir
+# Añadir Titulo admin
 admin.site.site_header = 'Administración de WashMe'

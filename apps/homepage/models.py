@@ -11,13 +11,11 @@ from datetime import datetime
 from django.utils.timezone import utc
 from apps.washer.models import Register
 
-
-
 CHOICES = (
-        ('2', 'Dos Horas'),
-        ('3', 'Tres Horas'),
-        ('8', 'Ocho Horas'),
-        )
+    ('2', 'Dos Horas'),
+    ('3', 'Tres Horas'),
+    ('8', 'Ocho Horas'),
+)
 
 class Service(models.Model):
 	hours         = models.CharField(verbose_name='Horas',max_length=255, choices=CHOICES ,default='2')
@@ -27,30 +25,10 @@ class Service(models.Model):
 	created       = models.DateTimeField(auto_now_add=True)
 	owner         = models.ForeignKey(User, null=True, blank=True)
 	the_whasher   = models.ForeignKey(Register, null=False, blank=False)
-
 	class Meta:
 		ordering = ['-created']
-
 	def __str__(self):
 	 	return str(self.date_delivery)
-
 	def get_absolute_url(self):
 		view_name = 'detail'
 		return reverse(view_name,kwargs={'pk':self.id})
-
-
-
-
-
-
-
-
-
-
-
-
-# class WasherUser(User):
-# 	is_washer = models.BooleanField(default=True)
-# 	is_active = models.BooleanField(default=True)
-# 	is_admin = models.BooleanField(default=False)
-

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.utils.decorators import method_decorator
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -10,13 +11,9 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.decorators import login_required
 from .models import Service
 from .Forms import ServiceForm
-
 from apps.washer.models import Register
-
 from material import (
     Layout, Fieldset, Row, Column, Span, Field,
     Span2, Span3, Span4, Span5, Span6, Span7,
@@ -37,11 +34,9 @@ class Detail(LoginRequiredMixin,DetailView):
 	template_name = 'homepage/service_detail.pug'
 	model = Service
 
-
 class ServiceListView(LoginRequiredMixin,ListView):
 	template_name  = 'homepage/service_list.pug'
 	model = Service
-
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs).filter(owner=self.request.user)
 		return qs
@@ -54,22 +49,18 @@ class SeviceUpdateView(LoginRequiredMixin,UpdateView):
 class ServiceDeleteView(LoginRequiredMixin,DeleteView):
 	template_name = 'homepage/service_confirm_delete.pug'
 	model = Service
-
 	def get_success_url(self):
 		return reverse('home')
 
 class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
-
 	template_name = 'homepage/service_form.pug'
 	model = Service
 	form_class = ServiceForm
-
 	def form_valid(self, form):
 		instance = Register.objects.filter(status=True,working=False).first()
 		form.instance.the_whasher = instance
 		form.instance.owner = self.request.user
 		return super(NewServiceView, self).form_valid(form)
-
 	def get_form(self):
 		form = super(NewServiceView, self).get_form(self.form_class)
 		form.fields['date_delivery'].widget.attrs.update({'class': 'datepicker'})
@@ -77,10 +68,8 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 		form.fields['direction'].widget.attrs.update({'placeholder': 'Ingresa Una Ubicación'})
 		form.fields['hours'].widget.attrs.update({'onchange': 'change()'})
 		return form
-
 	def get_success_url(self):
 		return reverse('home')
-
 	layout = Layout(
 		Row('hours'),
 		Row('date_delivery','time_entry'),
