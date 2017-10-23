@@ -1,4 +1,7 @@
+import os
+from django.conf import settings
 from django.shortcuts import render
+from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import CreateView
 from django.views.generic import TemplateView
@@ -20,13 +23,31 @@ class NewWasherView(CreateView):
     def form_valid(self, form):
         form.instance.status  = False
         form.instance.working = False
+        dir        = os.path.join(settings.BASE_DIR, "templates" , "email_washer.html" )
+        archivo    = open( dir , "r")
+        contenido  = archivo.read()
+        first_name = form.instance.first_name
+        last_name  = form.instance.last_name
+        emiil      = form.instance.emiil
+        contenido  = contenido.format(first_name,last_name,emiil)
+
+        subject      = 'Asunto'
+        text_content = 'Mensaje...nLinea 2nLinea3'
+        html_content = contenido
+        from_email   = '"origen" <joseguzmanlopez404@gmail.com>'
+        to           = emiil
+        msg          = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+
         
+
         return super(NewWasherView, self).form_valid(form)
 
     def get_form(self):
         form = super(NewWasherView, self).get_form(self.form_class)
-        #form.fields['image'].widget.attrs.update({'class': 'btn-floating btn-large waves-effect waves-light red'})
         form.fields['birthday'].widget.attrs.update({'class': 'datepicker'})
+
         return form
 
     def get_success_url(self):
