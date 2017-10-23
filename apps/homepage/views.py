@@ -14,6 +14,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.decorators import login_required
 from .models import Service
 from .Forms import ServiceForm
+
+from apps.washer.models import Register
+
 from material import (
     Layout, Fieldset, Row, Column, Span, Field,
     Span2, Span3, Span4, Span5, Span6, Span7,
@@ -62,6 +65,8 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 	form_class = ServiceForm
 
 	def form_valid(self, form):
+		instance = Register.objects.filter(status=True,working=False).first()
+		form.instance.the_whasher = instance
 		form.instance.owner = self.request.user
 		return super(NewServiceView, self).form_valid(form)
 
@@ -79,5 +84,5 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 	layout = Layout(
 		Row('hours'),
 		Row('date_delivery','time_entry'),
-		Row('direction','the_whasher'),
+		Row('direction'),
 		)

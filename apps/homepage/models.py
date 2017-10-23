@@ -26,7 +26,7 @@ class Service(models.Model):
 	direction     = models.CharField(max_length=5000)
 	created       = models.DateTimeField(auto_now_add=True)
 	owner         = models.ForeignKey(User, null=True, blank=True)
-	the_whasher   = models.ForeignKey(Register, null=True, blank=True)
+	the_whasher   = models.ForeignKey(Register, null=False, blank=False)
 
 	class Meta:
 		ordering = ['-created']
