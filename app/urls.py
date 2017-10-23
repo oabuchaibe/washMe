@@ -37,3 +37,5 @@ urlpatterns = [
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+# Añadir
+admin.site.site_header = 'Administración de WashMe'
