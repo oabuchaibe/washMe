@@ -33,7 +33,7 @@ msm_hr = _('La hora seleccionada ya paso.')
 class ServiceForm(forms.ModelForm):
 	class Meta:
 		model = Service
-		fields = ['hours', 'date_delivery', 'time_entry', 'direction']
+		fields = ['hours', 'date_delivery', 'time_entry', 'direction','the_whasher']
 	def clean_date_delivery(self):
 		date_d = self.cleaned_data.get('date_delivery')
 		horas_d = self.cleaned_data.get('hours')

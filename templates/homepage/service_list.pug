@@ -2,6 +2,7 @@
 |{% load i18n %}
 |{% load static %}
 
+
 |{% block content %}
 div
 	| {% for object in object_list %}
@@ -9,7 +10,7 @@ div
 		.col.s12.m6.push-m3
 			.card
 				.card-image
-					img(src="{% static '/img/m.png' %}")
+					img(src="/media/{{ object.the_whasher.image }}",width='100%' ,max-width='640px' )
 
 					span.card-title {{ object.direction }}
 
@@ -18,7 +19,7 @@ div
 				.card-content
 					p
 
-						| {{ object.owner.username }}
+						|{{ object.the_whasher.first_name }}
 
 	div
 		| {% empty %}

@@ -12,7 +12,10 @@ from apps.homepage.views import (
     NewServiceView,
     ServiceDeleteView,
  )
-from apps.washer.views import NewWasherView
+from apps.washer.views import (
+    HomeDoneView,
+    NewWasherView,
+    )
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -21,11 +24,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-   # url(r'accounts/register/$',
-    #    RegistrationView.as_view(form_class = ExRegistrationForm), 
-    #    name = 'registration_register'),
     url(r'^washer/', NewWasherView.as_view(), name="washeradd"),
-    
+    url(r'^done/', HomeDoneView.as_view(), name="done"),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', ServiceListView.as_view(), name='home'),
     url(r'^detail/(?P<pk>\d+)/$', Detail.as_view(), name='detail'),

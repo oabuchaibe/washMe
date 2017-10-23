@@ -1,5 +1,18 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models  import Register
-admin.site.register(Register)
+
+
+
+class AdminWaseher(admin.ModelAdmin):
+	list_display   = ['first_name', 'last_name', 'emiil', 'status', 'working']
+	list_filter    = ['sex', 'status','working']
+	search_fields  = ['first_name', 'last_name']
+	#list_editable = ['status', 'working']
+	class Meta:
+		model = Register
+		
+admin.site.register(Register,AdminWaseher)
+
+
+
+#'first_name', 'last_name', 'emiil', 'phone', 'image','birthday','sex'

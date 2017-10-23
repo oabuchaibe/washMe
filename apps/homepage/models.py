@@ -9,9 +9,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from datetime import datetime
 from django.utils.timezone import utc
-
-
-
+from apps.washer.models import Register
 
 
 
@@ -28,6 +26,7 @@ class Service(models.Model):
 	direction     = models.CharField(max_length=5000)
 	created       = models.DateTimeField(auto_now_add=True)
 	owner         = models.ForeignKey(User, null=True, blank=True)
+	the_whasher   = models.ForeignKey(Register, null=True, blank=True)
 
 	class Meta:
 		ordering = ['-created']

@@ -79,5 +79,5 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 	layout = Layout(
 		Row('hours'),
 		Row('date_delivery','time_entry'),
-		Row('direction'),
+		Row('direction','the_whasher'),
 		)
