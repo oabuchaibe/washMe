@@ -63,7 +63,7 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 		return super(NewServiceView, self).form_valid(form)
 	def get_form(self):
 		form = super(NewServiceView, self).get_form(self.form_class)
-		form.fields['date_delivery'].widget.attrs.update({'class': 'datepicker'})
+		form.fields['date_delivery'].widget.attrs.update({'class': 'year'})
 		form.fields['time_entry'].widget.attrs.update({'class': 'timepicker'})
 		form.fields['direction'].widget.attrs.update({'placeholder': 'Ingresa Una Ubicación'})
 		form.fields['hours'].widget.attrs.update({'onchange': 'myChangeFunction()'})
