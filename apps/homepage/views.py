@@ -66,12 +66,15 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 		form.fields['date_delivery'].widget.attrs.update({'class': 'datepicker'})
 		form.fields['time_entry'].widget.attrs.update({'class': 'timepicker'})
 		form.fields['direction'].widget.attrs.update({'placeholder': 'Ingresa Una Ubicación'})
-		form.fields['hours'].widget.attrs.update({'onchange': 'change()'})
+		form.fields['hours'].widget.attrs.update({'onchange': 'myChangeFunction()'})
+      
+
 		return form
 	def get_success_url(self):
 		return reverse('home')
 	layout = Layout(
-		Row('hours'),
+		Row('hours',Fieldset('$ 0')),
 		Row('date_delivery','time_entry'),
 		Row('direction'),
 		)
+	#,  Fieldset('$ 30.000 Cop'),

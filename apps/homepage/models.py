@@ -11,6 +11,20 @@ from datetime import datetime
 from django.utils.timezone import utc
 from apps.washer.models import Register
 
+class Price(models.Model):
+	name = models.CharField(max_length=10)
+	value = models.CharField(max_length=10)
+	currency = models.CharField(max_length=10)
+
+	def __str__(self):
+		
+		n = self.name
+		v = self.value
+		c = self.currency
+		a = '''{}    $ {}'''.format(n,v)
+		return self.name
+
+
 CHOICES = (
     ('2', 'Dos Horas'),
     ('3', 'Tres Horas'),
@@ -18,7 +32,7 @@ CHOICES = (
 )
 
 class Service(models.Model):
-	hours         = models.CharField(verbose_name='Horas',max_length=255, choices=CHOICES ,default='2')
+	hours         = models.ForeignKey(Price, verbose_name='Horas',max_length=255)
 	date_delivery = models.DateField(default=datetime.now().strftime("%Y-%m-%d"))
 	time_entry    = models.TimeField(default='07:00')
 	direction     = models.CharField(max_length=5000)
@@ -32,3 +46,4 @@ class Service(models.Model):
 	def get_absolute_url(self):
 		view_name = 'detail'
 		return reverse(view_name,kwargs={'pk':self.id})
+

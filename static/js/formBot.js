@@ -1,4 +1,4 @@
-var today = new Date();
+/*var today = new Date();
 var year = today.getUTCFullYear()
 var mount = today.getUTCMonth()
 var day  = today.getDate()
@@ -10,9 +10,11 @@ var minuto = today.getMinutes()
 function change(){
 	horas =  $("#id_hours" ).val();	
 	if ((horas == 2 ) || ( horas == 3 )) {
-		$("#id_date_delivery" ).val(fecha)	
+		$("#id_date_delivery" ).val(fecha)
+		$('h5').val()='Hola'
 	} else {
 	$("#id_date_delivery" ).val(fecha2)
 	}
+	alert('horas')
 } 
- 
+ */

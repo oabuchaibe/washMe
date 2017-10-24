@@ -27,7 +27,7 @@ class NewWasherView(CreateView):
         first_name   = form.instance.first_name
         last_name    = form.instance.last_name
         emiil        = form.instance.emiil
-        contenido    = contenido.format(first_name,last_name,emiil)
+        contenido    = contenido.format(first_name,last_name)
         subject      = 'Asunto'
         text_content = 'Mensaje...nLinea 2nLinea3'
         html_content = contenido
