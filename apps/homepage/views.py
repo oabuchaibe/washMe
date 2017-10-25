@@ -35,7 +35,7 @@ class Detail(LoginRequiredMixin,DetailView):
 	model = Service
 
 class ServiceListView(LoginRequiredMixin,ListView):
-	template_name  = 'homepage/service_list.pug'
+	#template_name  = 'homepage/service_list.pug'
 	model = Service
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs).filter(owner=self.request.user)
