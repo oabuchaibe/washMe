@@ -4,6 +4,9 @@
 | {% load i18n %}
 | {% load material_form %}
 | {% block content %}
+script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
+script.
+	function myFunction(){$( '#im' ).click ();}
 style(type='text/css').
 	h5{
 	text-align: right;
@@ -11,12 +14,35 @@ style(type='text/css').
 .row
 	.col.s12
 		.card-panel.grey.lighten-4
-			form.material(method='post')
+			form#target.materiall(method='post')
 				| {% csrf_token %}
 				| {% form form=form %}  {% endform %}
-				button.btn.waves-effect.waves-light(type='submit', name='action')
+				button.btn.waves-effect.waves-light(onclick="myFunction()",type='submit', name='action',id='enviar')
 					| Submit
 					i.material-icons.right send
+form#pay(method='post', action='https://gateway.payulatam.com/ppp-web-gateway/pb.zul', accept-charset='UTF-8')
+	input(type='image', border='0', alt='', src='http://www.payulatam.com/img-secure-2015/boton_pagar_grande.png',id='im')
+	input(name='buttonId', type='hidden', value='tFHU2xjz+SFz/SFnnhin3L3MExocwn+jOK7BLLNtYzUcduErtfkIEw==')
+	input(name='merchantId', type='hidden', value='507148')
+	input(name='accountId', type='hidden', value='679856')
+	input(name='description', type='hidden', value='2 Horas')
+	input(name='referenceCode', type='hidden', value='0070')
+	input(name='amount', type='hidden', value='30000')
+	input(name='tax', type='hidden', value='0')
+	input(name='taxReturnBase', type='hidden', value='0')
+	input(name='shipmentValue', value='0', type='hidden')
+	input(name='currency', type='hidden', value='COP')
+	input(name='lng', type='hidden', value='es')
+	input(name='buyerFullName', type="hidden", value='Jose Guzman')
+	input(name='buyerEmail', type='hidden', value='es',value='joseguzman@gmail.com')
+	input(name='telephone', type="hidden", value='3002917022')
+	input(name='approvedResponseUrl', type='hidden', value='http://127.0.0.1:8000')
+	input(name='declinedResponseUrl', type='hidden', value='http://127.0.0.1:8000/new_service')
+	input(name='pendingResponseUrl', type='hidden', value='http://127.0.0.1:8000/ac')
+	input(name='displayShippingInformation', type='hidden', value='NO')
+	input#urlOrigen(name='sourceUrl', value='', type='hidden')
+	input(name='buttonType', value='SIMPLE', type='hidden')
+	input(name='signature', value='ccf3b2be0850ef52850cf00c0a8944bbc0deb6fcb74470b8013421b152f19e75', type='hidden')
 
 | {% include 'geo.html' %}
 | {% endblock %}
