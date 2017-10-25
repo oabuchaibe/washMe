@@ -58,8 +58,16 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 	form_class = ServiceForm
 	def form_valid(self, form):
 		instance = Register.objects.filter(status=True,working=False).first()
-		form.instance.the_whasher = instance
-		form.instance.owner = self.request.user
+		if instance == None:
+			porAsignar = Register.objects.get(id=2)
+			form.instance.the_whasher = porAsignar
+			form.instance.owner = self.request.user
+		else:
+			form.instance.the_whasher = instance
+			form.instance.owner = self.request.user
+			instance.working=True
+			instance.save()
+			
 		return super(NewServiceView, self).form_valid(form)
 	def get_form(self):
 		form = super(NewServiceView, self).get_form(self.form_class)

@@ -12,7 +12,7 @@ from django.utils.timezone import utc
 from apps.washer.models import Register
 
 class Price(models.Model):
-	name = models.CharField(max_length=10)
+	name = models.CharField(max_length=30)
 	value = models.CharField(max_length=10)
 	currency = models.CharField(max_length=10)
 
