@@ -1,11 +1,11 @@
 |{% load i18n %}
 nav
-  .nav-wrapper
+  .nav-wrapper.light-green.accent-4
     a.brand-logo(href="{% url 'home' %}")
       |{% if request.user.is_authenticated %}
       |{{ user.username }}
       |{% else %}
-      |Logo
+      Logo img(src='logo.png')
       |{% endif %}
             
     ul#nav-mobile.right.hide-on-med-and-down	
@@ -15,8 +15,4 @@ nav
       li
         a(href="{% url 'auth_logout' %}") {% trans 'Log out' %}
       |{% else %}
-      li
-        a(href="{% url 'registration_register' %}") {% trans 'Register' %}
-      li
-        a(href="{% url 'auth_login' %}") {% trans 'Log in' %}
       |{% endif %}

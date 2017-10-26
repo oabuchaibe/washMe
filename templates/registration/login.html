@@ -2,36 +2,57 @@
 {% load material_form %}
 {% load i18n %}
 {% block content %}
-<h3 >{% trans 'Log in' %} </h3>
-  <div>
-    <form method="post" action=".">{% csrf_token %} 
-      {% form form=form %}  {% endform %}
-      <input class="waves-effect waves-light btn-large" type="submit" value="{% trans 'Log in' %}" class="btn" />
-      <input type="hidden" name="next" value="{{ next }}" />
-    </form>  
-    <p> <a  href="{% url 'auth_password_reset' %}  ">{% trans 'Forgot account ?' %}</a></p>
-    <p >{% trans 'Do not have an account' %} ? <a href="{% url 'registration_register' %}">{% trans "Sign up" %}</a></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col s12 m12 white z-depth-5">
+        <div class="row">
+    <div class="col m8 s12 offset-m2 offset-s1">
+       <h3 >{% trans 'Bienvenido a Wasme' %} </h3>
+       <h5 class="center-align">Inicia sesión</h5>
+    </div>
   </div>
 
+  <div class="row">
+    <div class="col m10 s12 offset-m1">
+      <form method="post" action=".">{% csrf_token %} 
+        {% form form=form %}  {% endform %}
+        <div class="row">
+          <div class="col m12 s12 offset-m4 offset-s2">
+            <input class="waves-effect waves-light btn-large  rounded light-green accent-4" type="submit" value="{% trans 'Log in' %}" class="btn" />
+          </div>
+        </div>
+        <input type="hidden" name="next" value="{{ next }}" />
+      </form> 
+    </div>
+    <div class="col m12 s12 offset-m4">
+          <p> 
+      <a  href="{% url 'auth_password_reset' %}">
+        {% trans 'Olvidaste tu contraseña?' %}
+      </a>
+    </p>
+    <p>
+      {% trans 'Aun no tienes cuenta?' %}
+      <a href="{% url 'registration_register' %}">
+        {% trans "Registrate aqui" %}
+      </a>
+    </p>
+    </div>
+  </div>
+
+
 {% block main %}
- <div>
- 	 <br>
-  
-  
 
 
-</div>
 <div class="row" >
   <div class=" col s6 m6 l6 ">
-    <p><strong>-- OR --</strong></p>
-    <a class="waves-effect waves-light btn-large" href="{% url 'social:begin' 'twitter' %}" >
-    <i class="fa fa-twitter"></i> {% trans 'Login with Twitter ' %}</a>
+    <a class="waves-effect waves-light btn-large light-blue" href="{% url 'social:begin' 'twitter' %}" >
+    <i class="fa fa-twitter"></i> {% trans 'Ingresa con Twitter' %}</a>
   </div>
 
   <div class="col s6 m6 l6  " >
-    <p><strong>-- Trabajar  --</strong></p>
-    <a class="waves-effect waves-light btn-large" href="{% url 'washeradd' %}" >
-    <i class="fa fa-address-card-o" aria-hidden="true"></i> {% trans 'washer' %}</a>
+    <a class="waves-effect waves-light btn-large light-green accent-4 rounded" href="{% url 'washeradd' %}" >
+    <i class="fa fa-address-card-o" aria-hidden="true"></i> {% trans ' Registrate como washer' %}</a>
     
   </div>       
 </div>
@@ -41,3 +62,6 @@
 
 
 {% endblock %}
+    </div>
+  </div>
+</div>
