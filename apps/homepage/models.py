@@ -27,7 +27,7 @@ class Price(models.Model):
 
 CHOICES = (
     ('2', 'Dos Horas'),
-    ('3', 'Tres Horas'),
+    ('4', 'Cuatro Horas'),
     ('8', 'Ocho Horas'),
 )
 
