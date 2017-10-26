@@ -28,11 +28,11 @@ urlpatterns = [
     url(r'^washer_list/', WasherListView.as_view(), name="washer_list"),
     url(r'^done/', HomeDoneView.as_view(), name="done"),
     url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^$', ServiceListView.as_view(), name='home'),
+    url(r'^home$', ServiceListView.as_view(), name='home'),
     url(r'^detail/(?P<pk>\d+)/$', Detail.as_view(), name='detail'),
     url(r'^detail/(?P<pk>\d+)/update/$', SeviceUpdateView.as_view(), name='update'),
     url(r'^detail/(?P<pk>\d+)/delete/$', ServiceDeleteView.as_view(), name='delete'),
-    url(r'^new_service$', NewServiceView.as_view(), name='new_service'),
+    url(r'^$', NewServiceView.as_view(), name='new_service'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

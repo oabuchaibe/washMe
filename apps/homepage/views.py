@@ -35,7 +35,7 @@ class Detail(LoginRequiredMixin,DetailView):
 	model = Service
 
 class ServiceListView(LoginRequiredMixin,ListView):
-	template_name  = 'homepage/service_list.pug'
+	#template_name  = 'homepage/service_list.pug'
 	model = Service
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs).filter(owner=self.request.user)
@@ -52,20 +52,28 @@ class ServiceDeleteView(LoginRequiredMixin,DeleteView):
 	def get_success_url(self):
 		return reverse('home')
 
-class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
+class NewServiceView(LayoutMixin,CreateView):
 	template_name = 'homepage/service_form.pug'
 	model = Service
 	form_class = ServiceForm
 	def form_valid(self, form):
 		instance = Register.objects.filter(status=True,working=False).first()
-		form.instance.the_whasher = instance
-		form.instance.owner = self.request.user
+		if instance == None:
+			porAsignar = Register.objects.get(id=2)
+			form.instance.the_whasher = porAsignar
+			form.instance.owner = self.request.user
+		else:
+			form.instance.the_whasher = instance
+			form.instance.owner = self.request.user
+			instance.working=True
+			instance.save()
+			
 		return super(NewServiceView, self).form_valid(form)
 	def get_form(self):
 		form = super(NewServiceView, self).get_form(self.form_class)
-		form.fields['date_delivery'].widget.attrs.update({'class': 'year'})
+		form.fields['date_delivery'].widget.attrs.update({'class': 'datepicker'})
 		form.fields['time_entry'].widget.attrs.update({'class': 'timepicker'})
-		form.fields['direction'].widget.attrs.update({'placeholder': 'Ingresa Una Ubicación'})
+		form.fields['direction'].widget.attrs.update({'placeholder': 'Ejemplo Calle 13 Carrera77 - Barranquilla '})
 		form.fields['hours'].widget.attrs.update({'onchange': 'myChangeFunction()'})
       
 

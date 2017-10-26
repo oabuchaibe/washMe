@@ -1,8 +1,18 @@
 | {% extends "layout.pug" %}
 | {% load i18n %}
+| {% load static %}
 | {% block content %}
-h1 Todo Bien Te Llamaremos 
+.row
+  .center
+    img.center(src="{% static '/img/send.svg' %}", alt='Smiley face', height='35%', width='35%')
+.row
+  .center
+    span
+      | We've sent you an email.
+
 | {% endblock %}
+
+
 
 
 

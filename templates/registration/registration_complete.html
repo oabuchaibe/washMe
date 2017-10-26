@@ -1,5 +1,27 @@
 {% extends "layout.pug" %}
 {% load i18n %}
+{% load static %}
 {% block content %}
-<p>{% trans "You have registered. We've sent you an email with a link to activate your account." %}</p>
+
+
+
+
+<div class="row" >
+	<div class="center" >
+       <img class="center"  src="{% static '/img/send.svg' %}" alt="Smiley face" height="35%" width="35%">
+	</div>
+</div>
+
+<div class="row" >
+	<div class="center">
+		
+			<span class="" >
+				You have registered. We've sent you an email 
+				with a link to activate your account.
+			</span>
+		
+	</div>
+</div>
+
+
 {% endblock %}
