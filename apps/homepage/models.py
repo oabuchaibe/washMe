@@ -11,38 +11,38 @@ from datetime import datetime
 from django.utils.timezone import utc
 from apps.washer.models import Register
 
-class Price(models.Model):
-	name = models.CharField(max_length=30)
-	value = models.CharField(max_length=10)
-	currency = models.CharField(max_length=10)
+class City(models.Model):
+	name_city = models.CharField(max_length=50)
 
 	def __str__(self):
-		
-		n = self.name
-		v = self.value
-		c = self.currency
-		a = '''{}    $ {}'''.format(n,v)
-		return self.name
+		return self.name_city
 
 
-CHOICES = (
-    ('2', 'Dos Horas'),
-    ('3', 'Tres Horas'),
-    ('8', 'Ocho Horas'),
-)
+class Packages(models.Model):
+	name_packages = models.CharField(max_length=50)
+
+	def __str__(self):
+		return self.name_packages
+
+
 
 class Service(models.Model):
-	hours         = models.ForeignKey(Price, verbose_name='Horas',max_length=255)
-	date_delivery = models.DateField(default=datetime.now().strftime("%Y-%m-%d"))
-	time_entry    = models.TimeField(default='07:00')
-	direction     = models.CharField(max_length=5000)
-	created       = models.DateTimeField(auto_now_add=True)
+	hours         = models.ForeignKey(Packages,verbose_name='Horas',max_length=50)
+	ciudad        = models.ForeignKey(City,verbose_name='Ciudad',max_length=50)
+	nombre        = models.CharField(max_length=50)
+	email         = models.CharField(max_length=50)
+	celular       = models.CharField(max_length=50)
+	fecha         = models.DateField(default=datetime.now().strftime("%Y-%m-%d"))
+	timestamp     = models.DateTimeField(auto_now_add=True)
 	owner         = models.ForeignKey(User, null=True, blank=True)
-	the_whasher   = models.ForeignKey(Register, null=False, blank=False)
+
+
+	
+
 	class Meta:
-		ordering = ['-created']
+		ordering = ['-timestamp']
 	def __str__(self):
-	 	return str(self.date_delivery)
+	 	return str(self.celular)
 	def get_absolute_url(self):
 		view_name = 'detail'
 		return reverse(view_name,kwargs={'pk':self.id})

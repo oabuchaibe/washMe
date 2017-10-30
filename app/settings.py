@@ -57,7 +57,7 @@ DJANGO_CORE_APPS = (
 CORE_APPS = (
     'apps',
     'apps.homepage',
-    'apps.washer'
+  
 )
 
 
@@ -125,7 +125,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'washme1',
+        'NAME': 'washmex',
         'USER': 'postgres',
         'PASSWORD': '123',
         'HOST': 'localhost',
@@ -194,5 +194,15 @@ REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 SITE_ID                 = 1
 LOGIN_REDIRECT_URL      ='pay'
 
+LOGOUT_URL = 'home'
+
+
 SOCIAL_AUTH_TWITTER_KEY    = 'GZRLBBOz845n9awPAKgHTNbSa'
 SOCIAL_AUTH_TWITTER_SECRET = 'N8u5LdLV9vdC4NHw3RZ14MuV0D9syHo77MBh4Nc0oUsvBTTlU7'
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '290742108111390'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '5d373c5ca4de643d68d80a7f7ada87be'  # App Secret
+
+
+
