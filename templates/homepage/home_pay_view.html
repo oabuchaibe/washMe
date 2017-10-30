@@ -1,0 +1,198 @@
+{% load i18n %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link href="{% static '/css/materialize.min.css' %}" rel="stylesheet">
+        <link href="{% static 'home/css/web.css' %}" rel="stylesheet" type="text/css">
+        <title>WashMe | Profesionales del aseo al instante</title>
+    </head>
+<body>
+{% include 'homepage/nav.html' %}
+<section id="apoyo" class="testimonials-section">
+    <div class="sec-padded-1x">        
+        <div class="row btm-mrgn-0">
+            <div class="col s12 l8 offset-l2">
+                <div class="center-heading">
+{% if request.user.is_authenticated %}
+<div class="row">
+        				<div class="col s12">
+            				<ul class="tabs">
+                				<li class="tab col s6"><a class="active" href="#test1">Agendar </a></li>
+                				<li class="tab col s6"><a  href="#test2">Agendados</a></li>
+            				</ul>
+        				</div>
+        				<!--1-->
+<div id="test1" class="col s12">
+    <form method="" >
+        <div class="row">
+            <h2 id='valor' class="center-align">$ 29.999</h2><span class="center-line green"></span>
+            <div class="center" >
+                <div class=" input-field col s12 m6 l6">
+                    <select id="id_hours" onchange="myChangeFunction()" >
+                        <option value="1" selected>2 horas</option>
+                        <option value="2">4 horas</option>
+                        <option value="3">8 horas</option>
+                    </select>
+                    <label for="input_text">Cuanto Tiempo</label>
+                </div>
+                <div class=" input-field  col s12 m6 l6">
+                    <select class="validate" required>
+                        <option value="1" selected>Barranquilla</option>
+                    </select>
+                    <label for="input_text">Ciudad</label>
+                </div>
+            </div>
+            <div class="input-field col s12 m6 l6">
+                <input id="input_text" type="text"  class="validate" required>
+                <label for="input_text">Como te Llamas  ? </label>
+            </div>
+            <div class="input-field col s12 m6 l6" >
+                <input id="email" type="email"  required>
+                <label for="email" data-error="wrong" data-success="right">Email</label>
+            </div>
+            <div class="input-field col s12 m6 l6">
+                <input id="numero" type="number"  class="validate" required>
+                <label for="numero"> Celular o telefono  </label>
+            </div>
+            <div class="input-field col s12 m6 l6">
+                <input type="text" class="datepicker" class="validate" required>
+                <label for="input_text">Que dia te podemos ayudar ? </label>
+            </div>
+        </div >
+        
+
+        <div class="row">
+            <div class="col m12 s12">
+                <button type="submit"  class="waves-effect light-green waves-light btn rounded center-align" ><i class="material-icons right">send</i>Agenda Y Paga
+            </button>
+                </div>
+                <br>
+                <br>
+                <br>
+                <center>
+                    <p class="center" >{{ user.username }} pagando ahora un servicio de limpieza        Ecológico  para tu Casa U Oficina.<br>Estas ayudando a reforestar  arboles  y a cuidar y preservación del Nuestro planeta. <i class="fa fa-heart-o" aria-hidden="true"></i><br>
+                    Barranquilla Teléfono: (5) 3602411 
+                    </p>
+                </center>
+        </div>                                  
+    </form>                				
+</div>
+<!--1 end-->
+<div id="test2" class="col s12">
+  <div class="row">
+   <div class="col s12 m12 l12" >
+	<div class="eventbuttons center ">
+		<a href="#_EVENTURL">
+		    <div class="event">
+			    <div class="eventMain">
+				    <div>Mandag</div>
+				    <div>Feb</div>
+				    <div>11</div>
+ 			    </div>
+ 			    <div class="eventAction utsolgt">Realizado</div>
+ 		     </div>
+ 		</a>		
+        <a href="#_EVENTURL">
+        	<div class="event">
+        		<div class="eventMain">
+           			<div>Tirsdag</div>
+              		<div>Feb</div>
+               		<div>12</div>
+           		</div>
+           		<div class="eventAction bestill">Por Realaizar</div>
+        	</div>
+        </a>
+    </div>
+  </div>
+<div class="row">
+    <div class="col s12 m12 l12" >
+        <br>
+        <br>
+        <br>
+
+    <center>
+        <p class="center" >{{ user.username }} Pagar tus servicio de limpieza ecologico una vez realizado o antes es muy facil da click encima de tu  servicio y llena los datos de pago <i class="fa fa-heart-o" aria-hidden="true"></i><br>
+                     
+        </p>
+    </center>
+    </div>
+</div>
+    
+
+    </div>
+</div>
+    
+
+
+</div>
+
+
+
+
+					{% else %}
+					    <div class="col s12 m12 l12 center " >
+							<h4 class="text-align: center;" >Agenda Un Servicio De Limpiesa Ecologico Desde  </h4>
+					    	<h2  class="center-align" > $ 29.999</h2><span class="center-line green"></span>
+					      	<h4 class="text-align: center;" >Antes Inicia Sesion Con </h4>
+					        <br>
+					        <br>
+					        <a class="waves-effect waves-light btn-large" href="{% url 'social:begin' 'twitter' %}" >
+					        <i class="fa fa-twitter"></i>Login Con Twitter</a>
+
+					        <br>
+					        <br>
+					        <br>
+					        <p>
+					           Estara ayudando a reforestar  arboles  y al Cuidado y preservación del Nuestro planeta
+					        </p>
+					    </div>
+					{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'homepage/footer.html' %}
+
+
+{% include 'homepage/js.html' %}
+<script type="text/javascript">
+$('.datepicker').pickadate({
+selectMonths: true,//Creates a dropdown to control month
+//selectYears: 15,
+
+labelMonthNext: 'Next Month',
+labelMonthPrev: 'Last Month',
+//The title label to use for the dropdown selectors
+labelMonthSelect: 'Select Month',
+labelYearSelect: 'Select Year',
+//Months and weekdays
+monthsFull: [ 'enero','febrero','marzo','abril','mayo','junio','julio',
+               'agosto','septiembre','octubre','noviembre','diciembre' ],
+monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec' ],
+weekdaysFull: [ "Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado" ],
+weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+//Materialize modified
+weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+//Today and clear
+today: 'Hoy',
+clear: 'Limpiar',
+close: 'Cerrar',
+//The format to show on the `input` element
+format: 'dd-mm-yyyy'
+});
+//Copy settings and initialization tooltipped
+</script>
+
+<script type="text/javascript">
+    var f = new Date();
+    A =f.getDate() + "-" + (f.getMonth() +1) + "-" + f.getFullYear()
+    $('.datepicker').val(A)
+
+</script>
+
+
+

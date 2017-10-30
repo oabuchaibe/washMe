@@ -30,30 +30,30 @@ class StaffRequiredMixin(object):
 	def dispatch(self,request,*args,**kwargs):
 		return super(StaffRequiredMixin,self).dispatch(request,*args,**kwargs)
 
-class Detail(LoginRequiredMixin,DetailView):
+class Detail(DetailView):
 	template_name = 'homepage/service_detail.pug'
 	model = Service
 
-class ServiceListView(LoginRequiredMixin,ListView):
+class ServiceListView(ListView):
 	#template_name  = 'homepage/service_list.pug'
 	model = Service
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs).filter(owner=self.request.user)
 		return qs
 
-class SeviceUpdateView(LoginRequiredMixin,UpdateView):
+class SeviceUpdateView(UpdateView):
 	template_name = 'homepage/service_form.pug'
 	model = Service
 	form_class = ServiceForm
 
-class ServiceDeleteView(LoginRequiredMixin,DeleteView):
+class ServiceDeleteView(DeleteView):
 	template_name = 'homepage/service_confirm_delete.pug'
 	model = Service
 	def get_success_url(self):
 		return reverse('home')
 
-class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
-	template_name = 'homepage/service_form.pug'
+class NewServiceView(LayoutMixin,CreateView):
+	#template_name = 'homepage/service_form.pug'
 	model = Service
 	form_class = ServiceForm
 	def form_valid(self, form):
@@ -85,4 +85,11 @@ class NewServiceView(LoginRequiredMixin,LayoutMixin,CreateView):
 		Row('date_delivery','time_entry'),
 		Row('direction'),
 		)
-	#,  Fieldset('$ 30.000 Cop'),
+
+class HomeView(TemplateView):
+	template_name =  'homepage/home_view.html'
+	
+class HomePayView(TemplateView):
+	template_name =  'homepage/home_pay_view.html'
+
+

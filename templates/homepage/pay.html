@@ -1,0 +1,75 @@
+<form method="post" action="https://gateway.payulatam.com/ppp-web-gateway/pb.zul" accept-charset="UTF-8">
+   	<h2 id='valor' class="center-align">$ 29.999</h2><span class="center-line green"></span>
+		 	<input name="buttonId" type="hidden" value="VgDL7MJqt+GBWo8uoFOIhaTqSLyNVHsRsuDVZWQb1ysk4Ni4w53s+A==" id="buttonId"/>
+   	<input name="merchantId" type="hidden" value="507148"/>
+   	<input name="accountId" type="hidden" value="679856"/>
+   	<input name="description" type="hidden" value="bolsa de 2 horas " id="description"/>
+   	<input name="referenceCode" type="hidden" value="was30" id="referenceCode"/>
+   	<input name="amount" type="hidden" value="30000" id="amount"/>
+   	<input name="tax" type="hidden" value="0"/>
+   	<input name="taxReturnBase" type="hidden" value="0"/>
+   	<input name="shipmentValue" value="0" type="hidden"/>
+   	<input name="currency" type="hidden" value="COP"/>
+   	<input name="lng" type="hidden" value="es"/>
+   	<input name="approvedResponseUrl" type="hidden" value="http://127.0.0.1:8000/"/>
+   	<input name="declinedResponseUrl" type="hidden" value="http://127.0.0.1:8000/x"/>
+   	<input name="pendingResponseUrl" type="hidden" value="http://127.0.0.1:8000/y"/>
+   	<input name="displayShippingInformation" type="hidden" value="NO"/>
+   	<input id="urlOrigen" name="sourceUrl" value="" type="hidden"/>
+   	<input name="buttonType" value="SIMPLE" type="hidden"/>
+   	<input name="signature" value="5f559e872c134fa086be94c8e524dbefb57f60fc961d7a11e3404fce248bacf2" type="hidden" id="signature"/>
+       
+   	<div class="row">
+   		<div class="center" >
+      			<div class=" input-field col s12 m12 l12">
+         				<p>Cuanto Tiempo</p>
+         				<select id="id_hours" onchange="myChangeFunction()" >
+            					<option value="1" selected>2 horas</option>
+            					<option value="2">4 horas</option>
+            					<option value="3">8 horas</option>
+         				</select>
+      			</div>
+      		</div>
+   	</div>
+   	<div class="row">
+      		<div class="col m12 s12">
+         			<button type="submit"  class="waves-effect light-green waves-light btn rounded center-align" ><i class="material-icons right">send</i>Agenda Y Paga
+         			</button>
+      		</div>
+      		<br>
+      		<br>
+      		<br>
+      		<center>
+       			<p class="center" >{{ user.username }} pagando ahora un servicio de limpieza Ecológico  para tu Casa U Oficina.<br>Estas ayudando a reforestar  arboles  y a cuidar y preservación del Nuestro planeta. <i class="fa fa-heart-o" aria-hidden="true"></i><br>
+                        Barranquilla Teléfono: (5) 3602411 
+                        </p>
+        		</center>
+   	</form>
+
+
+
+
+
+
+
+
+
+                <div class="nav-wrapper">
+                    <a href="#"   class="waves-effect waves-light"><h1 style="color:  #8bc34a"    >Wash me</h1></a><a href="#" data-activates="mobile-demo" class="button-collapse"><i class="ion-android-menu"></i></a>
+                    <ul class="right main-nav">
+                        
+                        <li><a href="{% url 'pay' %}" class="waves-effect waves-light">Agendar</a></li>
+                        <li><a href="#overview" class="waves-effect waves-light">Servicios</a></li>
+                        <li><a href="#apoyo" class="waves-effect waves-light">Apoyo</a></li>
+                        <li><a href="#location" class="waves-effect waves-light">Contactanos</a></li>
+                        <li><a href="http://127.0.0.1:8000" class="nav-btn-download waves-effect waves-light btn green white-text"><i  class="material-icons left">input</i>¿ESTÁS BUSCANDO TRABAJO? </a></li>
+                    </ul>
+                    <ul id="mobile-demo" class="side-nav">
+                        <li><a href="#overview" class="waves-effect waves-light">Servicios</a></li>
+                        <li><a href="#apoyo" class="waves-effect waves-light">Apoyo</a></li>
+                        <li><a href="#location" class="waves-effect waves-light">Contactanos</a></li>
+                        <li><a href="#" class="nav-btn-download waves-effect waves-light btn green white-text"><i class="material-icons left">input</i>Trabaja con Nosotros</a></li>
+                    </ul>
+                </div>
+   
+

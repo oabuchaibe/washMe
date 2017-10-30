@@ -1,0 +1,202 @@
+{% load i18n %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet" type="text/css">
+
+        <link href="{% static '/css/materialize.min.css' %}" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="{% static 'home/css/web.css' %}" rel="stylesheet" type="text/css">
+        <script src="https://use.fontawesome.com/ad1abb2e5e.js"></script>
+        <title>WashMe | Profesionales del aseo al instante</title>
+    </head>
+    <body>
+    <div class="scroll-to-top waves-effect waves-light trans-effect"><a href="#"><i class="fa fa-arrow-up" aria-hidden="true"></i></a></div>
+    <div id="navigation">
+           <nav>
+            <nav >
+                <a href="#"   class="waves-effect waves-light"><h1 style="color:  #8bc34a"    >Wash me</h1></a><a href="#" data-activates="mobile-demo" class="button-collapse"><i class="ion-android-menu"></i></a>
+                <a href="#" data-activates="slide-in" class="button-collapse"><i class="material-icons">menu</i></a>
+
+
+
+                   <ul class="right hide-on-med-and-down">
+                        
+                        <li><a href="{% url 'pay' %}" class="waves-effect waves-light">Agendar</a></li>
+                        <li><a href="#overview" class="waves-effect waves-light">Servicios</a></li>
+                        <li><a href="#apoyo" class="waves-effect waves-light">Apoyo</a></li>
+                        
+                        <li><a href="http://127.0.0.1:8000" class="nav-btn-download waves-effect waves-light btn green white-text">¿ESTÁS BUSCANDO TRABAJO? </a></li>
+                    </ul>
+
+
+
+
+
+              <ul id="slide-in" class="side-nav">
+                 <li><a href="{% url 'pay' %}" class="nav-btn-download waves-effect waves-light btn green white-text">Agendar</a></li>
+                     <li><a href="#overview" class="waves-effect waves-light">Servicios</a></li>
+                        <li><a href="#apoyo" class="waves-effect waves-light">Apoyo</a></li>
+                        
+                        <li><a href="http://127.0.0.1:8000" class="">¿ESTÁS BUSCANDO TRABAJO? </a></li>
+                </ul>
+            </nav>
+ 
+        </nav>
+<div class="row">
+    <div class="col m12 s12 hide-on-med-and-down">
+            <div class="card-panel white z-depth-5 floating-form">          
+                
+                    <h5  class="center-align">¿Necesitas Ayuda Con El Aseo?</h5>
+               
+                    <a href="{% url 'pay' %}" class="waves-effect light-green waves-light btn rounded center-align" ><i class="material-icons right">send</i>Agendar Ahora 
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+<div class="slider fullscreen ">
+    <ul class="slides back">
+        <li>
+            <img src="{% static 'home/img/of-800x350.png' %} ">
+             <div class="caption right-align">
+                <h3 style="color:  white;" >Te proveemos con gente de confianza</h3>
+                    <h5 class="light grey-text text-lighten-3"></h5>
+            </div> 
+        </li>
+        <li>
+            <img src="{% static 'home/img/a.jpg' %}">
+             <div class="caption right-align">
+                <h3 style="color: white;">Ayudanos a sembrar más árboles</h3>
+                <h5 class="light grey-text text-lighten-3"></h5>
+            </div> 
+        </li>
+        <li>
+            <img class="responsaid" src="{% static 'home/img/14411866907556-0-680x276.jpg' %}">
+                 <div class="caption right-align">
+                    <h3 style="color: white;">A tu casa u oficina, Un profesional del aseo!</h3>
+                    <h5 class="light grey-text text-lighten-3"></h5>
+                </div> 
+        </li>
+    </ul>
+</div>
+<section id="overview" class="overview-section sec-padded-1x">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 l8 offset-l2">
+                <div class="center-heading">
+                <h1>WashMe es..</h1><span class="center-line green"></span>
+            </div>
+        </div>
+        </div>
+        <div class="row center">
+            <div class="col s12 m12 l12">
+                <div data-wow-delay="0.1s" class="card-panel overview-section-box wow fadeIn"><i class="fa fa-check green" aria-hidden="true"></i>
+                    <h2>Solucición</h2>
+                    <br>
+                    <p><h5><samp>  Sabemos que puede ser difícil encontrar a alguien de confianza que mantenga muy limpia tu casa u oficina. Washme es tu mejor aliado para esa tarea. Solicita tu profesional de limpiesa </samp> </h5></p>
+                </div>
+            </div>
+            <div class="col s12 m12 l12">
+                <div data-wow-delay="0.3s" class="card-panel overview-section-box wow fadeIn"><i aria-hidden="true" class="fa fa-users green"></i>
+                    <h2>Social</h2>
+                    <br>
+                    <p><h5><samp>Queremos ser apoyo y ejemplo para nuestro departamento, ya que la gran mayoria de los washers asociados son madres cabeza de hogar a las cuales les prestamos nuestra ayuda para su progreso y el de su familia.</samp> </h5></p>
+                </div>
+            </div>
+            <div class="col s12 m12 l12">
+                <div data-wow-delay="0.4s" class="card-panel overview-section-box wow fadeIn"> <i class="fa fa-leaf trans-effect green" aria-hidden="true"></i>
+                    <h2>Ecológico</h2>
+
+                    <br>
+                    <p><h5><samp>Nos tomamos en serio en medio ambiente, por eso cada uno de los implementos de limpieza que usan nuestros washers son totalmente biodegradables y amigos de la naturaleza.al solicita un servicio estas donando recursos para la reforestacion y cuidado de nuestro planeta </samp> </h5></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="center" >
+    <a href="{% url 'pay' %}" class="waves-effect light-green waves-light btn rounded center-align" ><i class="material-icons right">send</i>Agendar Ahora 
+                    </a>
+</section>
+
+
+<section id="apoyo" class="testimonials-section">
+    <div class="sec-padded-1x">
+        <div class="container">
+            <div class="row btm-mrgn-0">
+                <div class="col s12 l8 offset-l2">
+                    <div class="center-heading">
+                        <h3>Apoyo</h3><span class="center-line green"></span>
+                        <p>Personas Grandiosas Que Confian En Nosotros.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row center">
+                <div class="col s12 m10 l10 offset-m1 offset-l1">
+                    <div class="item">
+                        <div class="testimonials-inner"><img src="{% static 'home/img/monokuko.png' %}" alt=""><span>Monokuko Space</span></div>
+                    </div>  
+                    <div class="item">
+                        <div class="testimonials-inner"><img src="{% static 'home/img/neewoi.jpg' %}" alt=""><span>NEEWOI</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <section id="location" class="location-section">
+    <div class="container-fluid">
+        <div class="row btm-mrgn-0">
+            <div class="col s12 m6 l6 address-block push-l3 push-m3">
+                <div class="center-heading center-align">
+                    <h3>Conectate con nosotros</h3><span class="center-line green"></span>
+                    <p>Nos interesa mucho saber tu opinión de nuestro servicio, danos tu feedback y estamos para servirte, siente libre de contactarnos.</p>
+                </div>
+                <div class="row">
+                    <div class="col s12 m10 card-panel white push-m1">
+                        <form id="contactForm" class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12"><i class="material-icons prefix">person</i>
+                                    <input id="name" type="text" name="name" class="validate">
+                                    <label for="name">Nombre</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12"><i class="material-icons prefix">email</i>
+                                    <input id="email" type="email" name="email" class="validate">
+                                    <label for="email">Correo Electrónico</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12"><i class="material-icons prefix">textsms</i>
+                                    <textarea id="msj" name="msj" class="materialize-textarea"></textarea>
+                                    <label for="msj">Dejanos tu mensaje</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col push-l4">
+                                    <input id="submit" type="submit" name="submit" value="Enviar" class="waves-effect waves-light btn green">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+{% include 'homepage/footer.html' %}
+
+
+{% include 'homepage/js.html' %}

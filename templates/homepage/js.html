@@ -1,0 +1,139 @@
+{% load i18n %}
+{% load staticfiles %}
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'home/js/jquery.smoothscroll.min.js' %}" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+<script src="{% static 'home/js/config.js' %}" type="text/javascript"></script>
+<script src="{% static 'home/js/pay.js' %}" type="text/javascript"></script>
+<script type="text/javascript">
+      $('#mobile-button').click(()=>{
+        $('#mobile-button').hide()
+      })
+
+      $('#cancel-icon').click(()=>{
+        $('#mobile-button').show()
+      })
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(()=>{
+      $('.slider').slider();
+      })
+    </script>
+    <script>
+      $(document).ready(function(){
+        $('.modal').modal();
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+        $('select').material_select()
+      })
+    </script>
+    <script>
+      $(() => {
+      let fullUrl =  location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '')
+      $("#submit").click(() => {
+      let formData = $("#contactForm").serialize()
+      Materialize.toast('Enviando mensaje...', 1000);
+      $.ajax({
+      url: fullUrl+'/',
+      type: 'POST',
+      data: formData,
+      success: (result) => {
+      Materialize.toast(result, 2000)
+      },
+      error: (e) => {
+      Materialize.toast('Hubo un error enviando el mensaje"+e.status +", Mensaje de error:'+e.statusText, 5000);
+      },
+      dataType: "html",
+      timeout: 60000
+      })
+      })
+      })
+    </script>
+    <script type="text/javascript">
+        $('.datepicker3').pickadate({
+        	dateFormat: 'dd/mm/yy',
+      		selectMonths: true, // Creates a dropdown to control month
+    		selectYears: 15, // Creates a dropdown of 15 years to control year,
+    		today: 'Today',
+    		clear: 'Clear',
+    		close: 'Ok',
+    		closeOnSelect: false // Close upon selecting a date,
+  		});
+     
+    </script>
+  </body>
+</html>
+<style type="text/css">
+    a {
+  text-decoration: none;
+  color: white;
+}
+.event {
+  float: left;
+  margin-left: 10px;
+  width: 120px;
+  height: 150px;
+  font-family: Helvetica, sans-serif;
+  color: white;
+  text-align: center;
+}
+.eventbuttons a:first-child .event {
+  background: #2F4F4F;
+}
+.eventbuttons a:last-child .event {
+  background: #388E8E;
+}
+.eventbuttons a .event {
+  background: #528B8B;
+}
+.event .eventMain {
+  height: 125px;
+}
+.event .eventMain div:nth-child(1) {
+  font-size: 14px;
+  padding-top: 10px;
+}
+.event .eventMain div:nth-child(2) {
+  font-size: 11px;
+  padding-top: 10px;
+}
+.event .eventMain div:nth-child(3) {
+  font-size: 60px;
+}
+.event .eventAction {
+  height: 30px;
+  background: #323232;
+  padding-top: 2px;
+}
+.event .bestill {
+  color: #8FD8D8;
+}
+.event .utsolgt {
+  color: #7A8B8B;
+}
+.event:hover .bestill {
+  background: #444444;
+}
+
+
+
+</style>
+
+
+    <script type="text/javascript">
+        
+        $('.button-collapse').sideNav({
+      menuWidth: 300, // Default is 240
+      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    }
+  );
+    </script>
+<script src="https://use.fontawesome.com/ad1abb2e5e.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet" type="text/css">
+ 
