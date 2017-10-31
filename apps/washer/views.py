@@ -51,7 +51,7 @@ class NewWasherView(CreateView):
     )
     
 class HomeDoneView(TemplateView):
-    template_name = "washer/done.pug"
+    template_name = "washer/done.html"
     
 class WasherListView(ListView):
     model = Register

@@ -18,7 +18,7 @@ from apps.homepage.views import (
  )
 
 from apps.washer.views import (
-#     HomeDoneView,
+     HomeDoneView,
     NewWasherView,
 #     WasherListView,
  )
@@ -30,7 +30,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^washer/', NewWasherView.as_view(), name="new_washer"),
     # url(r'^washer_list/', WasherListView.as_view(), name="washer_list"),
-    # url(r'^done/', HomeDoneView.as_view(), name="done"),
+
+    url(r'^done/', HomeDoneView.as_view(), name="done"),
+
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^agendar', ServiceListView.as_view(), name='pay'),
     # url(r'^detail/(?P<pk>\d+)/$', Detail.as_view(), name='detail'),
