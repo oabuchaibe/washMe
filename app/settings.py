@@ -57,6 +57,7 @@ DJANGO_CORE_APPS = (
 CORE_APPS = (
     'apps',
     'apps.homepage',
+    'apps.washer',
   
 )
 

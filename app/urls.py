@@ -17,18 +17,18 @@ from apps.homepage.views import (
     ServiceListView,
  )
 
-# from apps.washer.views import (
+from apps.washer.views import (
 #     HomeDoneView,
-#     NewWasherView,
+    NewWasherView,
 #     WasherListView,
-# )
+ )
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # url(r'^washer/', NewWasherView.as_view(), name="washeradd"),
+    url(r'^washer/', NewWasherView.as_view(), name="new_washer"),
     # url(r'^washer_list/', WasherListView.as_view(), name="washer_list"),
     # url(r'^done/', HomeDoneView.as_view(), name="done"),
     url(r'^accounts/', include('registration.backends.default.urls')),

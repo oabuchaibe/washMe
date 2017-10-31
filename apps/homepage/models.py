@@ -20,6 +20,7 @@ class City(models.Model):
 
 class Packages(models.Model):
 	name_packages = models.CharField(max_length=50)
+	value         = models.CharField(max_length=50)
 
 	def __str__(self):
 		return self.name_packages

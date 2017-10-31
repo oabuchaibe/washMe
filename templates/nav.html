@@ -4,9 +4,9 @@
     <div class="navbar-fixed">
         <nav>
             <a class="waves-effect waves-light" href="{% url 'home' %}">
-                <h1 style="color:  #8bc34a">
+                <h4 style="color:  #8bc34a">
                     Wash me
-                </h1>
+                </h4>
             </a>
             <a class="button-collapse" data-activates="mobile-demo" href="#">
                 <i class="ion-android-menu">
@@ -31,11 +31,6 @@
                     </a>
                 </li>
                 {% endif %}
-                <li>
-                    <a class="nav-btn-download waves-effect waves-light btn green white-text" href="http://127.0.0.1:8000">
-                        ¿ESTÁS BUSCANDO TRABAJO?
-                    </a>
-                </li>
             </ul>
             <ul class="side-nav" id="slide-in">
                 {% if request.user.is_authenticated %}
@@ -51,11 +46,6 @@
                     </a>
                 </li>
                 {% endif %}
-                <li>
-                    <a class="nav-btn-download waves-effect waves-light btn green white-text" href="http://127.0.0.1:8000">
-                        ¿ESTÁS BUSCANDO TRABAJO?
-                    </a>
-                </li>
             </ul>
         </nav>
     </div>
