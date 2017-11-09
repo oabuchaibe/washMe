@@ -13,8 +13,7 @@
                 </i>
             </a>
             <a class="button-collapse" data-activates="slide-in" href="#">
-                <i class="material-icons">
-                    menu
+                <i class="fa fa-bars fa-2x" aria-hidden="true">
                 </i>
             </a>
             <ul class="right hide-on-med-and-down">
@@ -23,6 +22,8 @@
                     <a href="{% url 'auth_logout' %}">
                         {% trans 'Log out' %}
                     </a>
+                    <i class="fa fa-sign-out" aria-hidden="true">
+                    </i>
                 </li>
                 {% else %}
                 <li>
@@ -38,6 +39,8 @@
                     <a href="{% url 'auth_logout' %}">
                         {% trans 'Log out' %}
                     </a>
+                    <i class="fa fa-sign-out" aria-hidden="true">
+                    </i>
                 </li>
                 {% else %}
                 <li>
