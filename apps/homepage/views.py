@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
@@ -11,8 +12,11 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
+
 from .models import Service
-from .Forms import ServiceForm
+from .models import City
+from .models import Packages
+
 from apps.washer.models import Register
 from material import (
     Layout, Fieldset, Row, Column, Span, Field,
@@ -30,59 +34,103 @@ class StaffRequiredMixin(object):
 	def dispatch(self,request,*args,**kwargs):
 		return super(StaffRequiredMixin,self).dispatch(request,*args,**kwargs)
 
-class Detail(LoginRequiredMixin,DetailView):
-	template_name = 'homepage/service_detail.pug'
-	model = Service
+# class Detail(DetailView):
+# 	template_name = 'homepage/service_detail.pug'
+# 	model = Service
+
+# class ServiceListView(ListView):
+# 	#template_name  = 'homepage/service_list.pug'
+# 	model = Service
+# 	def get_queryset(self, *args, **kwargs):
+# 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs).filter(owner=self.request.user)
+# 		return qs
+
+# class SeviceUpdateView(UpdateView):
+# 	template_name = 'homepage/service_form.pug'
+# 	model = Service
+# 	form_class = ServiceForm
+
+# class ServiceDeleteView(DeleteView):
+# 	template_name = 'homepage/service_confirm_delete.pug'
+# 	model = Service
+# 	def get_success_url(self):
+# 		return reverse('home')
+
+# class NewServiceView(LayoutMixin,CreateView):
+# 	#template_name = 'homepage/service_form.pug'
+# 	model = Service
+# 	form_class = ServiceForm
+# 	def form_valid(self, form):
+# 		instance = Register.objects.filter(status=True,working=False).first()
+# 		if instance == None:
+# 			porAsignar = Register.objects.get(id=2)
+# 			form.instance.the_whasher = porAsignar
+# 			form.instance.owner = self.request.user
+# 		else:
+# 			form.instance.the_whasher = instance
+# 			form.instance.owner = self.request.user
+# 			instance.working=True
+# 			instance.save()
+			
+# 		return super(NewServiceView, self).form_valid(form)
+# 	def get_form(self):
+# 		form = super(NewServiceView, self).get_form(self.form_class)
+# 		form.fields['date_delivery'].widget.attrs.update({'class': 'year'})
+# 		form.fields['time_entry'].widget.attrs.update({'class': 'timepicker'})
+# 		form.fields['direction'].widget.attrs.update({'placeholder': 'Ingresa Una Ubicación'})
+# 		form.fields['hours'].widget.attrs.update({'onchange': 'myChangeFunction()'})
+
+      
+
+# 		return form
+# 	def get_success_url(self):
+# 		return reverse('home')
+# 	layout = Layout(
+# 		Row('hours',Fieldset('$ 0')),
+# 		Row('date_delivery','time_entry'),
+# 		Row('direction'),
+# 		)
+
+class HomeView(TemplateView):
+	template_name =  'homepage/home_view.html'
+	
+# class HomePayView(TemplateView):
+# 	template_name =  'homepage/home_pay_view.html'
+
+
+def create_service(request):
+	if request.method == 'POST':		
+		hours  = request.POST['hours']
+		ciudad = request.POST['ciudad']
+		name   = request.POST['name']
+		email  = request.POST['email']
+		numero = request.POST['numero']
+		date   = request.POST['date']
+		
+		hours  = Packages.objects.get(id=hours)
+		ciudad   = City.objects.get(id=ciudad)
+
+		Service.objects.create(
+			 hours   = hours,
+			 ciudad  = ciudad,
+			 nombre  = name,
+			 email   = email,
+			 celular = numero,
+			 fecha   = date,
+			 owner   = request.user
+		)
+		return HttpResponse('')
+
 
 class ServiceListView(LoginRequiredMixin,ListView):
-	#template_name  = 'homepage/service_list.pug'
+	template_name  = 'homepage/home_pay_view.html'
 	model = Service
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ServiceListView,self).get_queryset(*args,**kwargs).filter(owner=self.request.user)
 		return qs
-
-class SeviceUpdateView(LoginRequiredMixin,UpdateView):
-	template_name = 'homepage/service_form.pug'
-	model = Service
-	form_class = ServiceForm
-
-class ServiceDeleteView(LoginRequiredMixin,DeleteView):
-	template_name = 'homepage/service_confirm_delete.pug'
-	model = Service
-	def get_success_url(self):
-		return reverse('home')
-
-class NewServiceView(LayoutMixin,CreateView):
-	template_name = 'homepage/service_form.pug'
-	model = Service
-	form_class = ServiceForm
-	def form_valid(self, form):
-		instance = Register.objects.filter(status=True,working=False).first()
-		if instance == None:
-			porAsignar = Register.objects.get(id=2)
-			form.instance.the_whasher = porAsignar
-			form.instance.owner = self.request.user
-		else:
-			form.instance.the_whasher = instance
-			form.instance.owner = self.request.user
-			instance.working=True
-			instance.save()
-			
-		return super(NewServiceView, self).form_valid(form)
-	def get_form(self):
-		form = super(NewServiceView, self).get_form(self.form_class)
-		form.fields['date_delivery'].widget.attrs.update({'class': 'datepicker'})
-		form.fields['time_entry'].widget.attrs.update({'class': 'timepicker'})
-		form.fields['direction'].widget.attrs.update({'placeholder': 'Ejemplo Calle 13 Carrera77 - Barranquilla '})
-		form.fields['hours'].widget.attrs.update({'onchange': 'myChangeFunction()'})
-      
-
-		return form
-	def get_success_url(self):
-		return reverse('home')
-	layout = Layout(
-		Row('hours',Fieldset('$ 0')),
-		Row('date_delivery','time_entry'),
-		Row('direction'),
-		)
-	#,  Fieldset('$ 30.000 Cop'),
+	
+	
+	
+	
+	  
+	

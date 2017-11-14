@@ -1,0 +1,306 @@
+{% load i18n %}
+{% load staticfiles %}
+{% include 'js.html' %}
+<!DOCTYPE html>
+<html lang="es">
+    {% include 'head.html' %}
+    <body>
+        {% include 'nav.html' %}
+        <section class="testimonials-section" id="apoyo">
+            <div class="sec-padded-1x">
+                <div class="row btm-mrgn-0">
+                    <div class="col s12 l8 offset-l2">
+                        <div class="center-heading">
+                            <div class="row">
+                                <div class="col s12">
+                                    <ul class="tabs">
+                                        <li class="tab col s6" id="agenda">
+                                            <a href="#test1">
+                                                Agendar
+                                            </a>
+                                        </li>
+                                        <li class="tab col s6" id="agendado">
+                                            <a  class="active"  href="#test2">
+                                                Agendados
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--1-->
+                                <div class="col s12" id="test1">
+                                    <form id="new_service">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <h2 class="center-align" id="valor">
+                                                $ 29.999
+                                            </h2>
+                                            <span class="center-line green">
+                                            </span>
+                                            <div class="center">
+                                                <div class=" input-field col s12 m6 l6">
+                                                    <select id="id_hours" onchange="myChangeFunction()">
+                                                        <option selected="" value="1">
+                                                            2 horas
+                                                        </option>
+                                                        <option value="2">
+                                                            4 horas
+                                                        </option>
+                                                        <option value="3">
+                                                            8 horas
+                                                        </option>
+                                                    </select>
+                                                    <label for="input_text">
+                                                        Cuanto Tiempo
+                                                    </label>
+                                                </div>
+                                                <div class=" input-field col s12 m6 l6">
+                                                    <select class="validate" id="id_ciudad" required="">
+                                                        <option selected="" value="1">
+                                                            Barranquilla
+                                                        </option>
+                                                    </select>
+                                                    <label for="input_text">
+                                                        Ciudad
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="input-field col s12 m6 l6">
+                                                <input class="validate" id="name" name="name" required="" type="text"/>
+                                                <label for="name">
+                                                    Como te Llamas  ?
+                                                </label>
+                                            </div>
+                                            <div class="input-field col s12 m6 l6">
+                                                <input id="id_email" required="" type="email"/>
+                                                <label data-error="wrong" data-success="right" for="id_email">
+                                                    Email
+                                                </label>
+                                            </div>
+                                            <div class="input-field col s12 m6 l6">
+                                                <input class="validate" id="numero" required="" type="number"/>
+                                                <label for="numero">
+                                                    Celular o telefono
+                                                </label>
+                                            </div>
+                                            <div class="input-field col s12 m6 l6">
+                                                <input class="validate" id="id_date" required="" type="text"/>
+                                                <label for="id_date">
+                                                    Que dia te podemos ayudar ?
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col m12 s12">
+                                                <button class="waves-effect light-green waves-light btn rounded center-align" type="submit">
+                                                    Agendar
+                                                </button>
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                        </div>
+                                    </form>
+                                    <center>
+                                        <p class="center">
+                                            {{ user.username }} pagando ahora un servicio de limpieza        Ecológico  para tu Casa U Oficina.
+                                            <br/>
+                                            Estas ayudando a reforestar  arboles  y a cuidar y preservación del Nuestro planeta.
+                                            <i aria-hidden="true" class="fa fa-heart-o">
+                                            </i>
+                                            <br/>
+                                            Barranquilla Teléfono: (5) 3602411
+                                        </p>
+                                    </center>
+                                </div>
+                                <!--1 end-->
+                                <div class="" id="test2">
+                                    <div class="row">
+                                        <div class=" eventbuttons center ">
+                                            {% for object in object_list %}
+                                            <div class="col s12 m6 l6 ">
+                                                <div class="card horizontal">
+                                                    <div class="card-image teal lighten-2">
+                                                        <div class="event">
+                                                            <div class="">
+                                                                <br/>
+                                                                <h5 style="color: white">
+                                                                    {{ object.fecha|date:"l" }}
+                                                                </h5>
+                                                                <h1 style="color: white">
+                                                                    {{ object.fecha|date:"d" }}
+                                                                </h1>
+                                                                <br/>
+                                                                {{ object.fecha|date:"F" }}
+                                                                {{ object.fecha|date:"Y" }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-stacked">
+                                                        <div class="card-content">
+                                                            <p>
+                                                                I am a very simple card. I am good at containing small bits of information.
+                                                            </p>
+                                                        </div>
+                                                        <div class="card-action">
+                                                            {% if object.hours.value == "30.000" %}
+                                                            <form accept-charset="UTF-8" action="https://gateway.payulatam.com/ppp-web-gateway/pb.zul" method="post">
+                                                                <input name="buttonId" type="hidden" value="VgDL7MJqt+GBWo8uoFOIhaTqSLyNVHsRsuDVZWQb1ysk4Ni4w53s+A=="/>
+                                                                <input name="merchantId" type="hidden" value="507148"/>
+                                                                <input name="accountId" type="hidden" value="679856"/>
+                                                                <input name="description" type="hidden" value="bolsa de 2 horas "/>
+                                                                <input name="referenceCode" type="hidden" value="was30"/>
+                                                                <input name="amount" type="hidden" value="30000"/>
+                                                                <input name="tax" type="hidden" value="0"/>
+                                                                <input name="taxReturnBase" type="hidden" value="0"/>
+                                                                <input name="shipmentValue" type="hidden" value="0"/>
+                                                                <input name="currency" type="hidden" value="COP"/>
+                                                                <input name="lng" type="hidden" value="es"/>
+                                                                <input name="approvedResponseUrl" type="hidden" value="http://127.0.0.1:8000/"/>
+                                                                <input name="declinedResponseUrl" type="hidden" value="http://127.0.0.1:8000/x"/>
+                                                                <input name="pendingResponseUrl" type="hidden" value="http://127.0.0.1:8000/y"/>
+                                                                <input name="displayShippingInformation" type="hidden" value="NO"/>
+                                                                <input id="urlOrigen" name="sourceUrl" type="hidden" value=""/>
+                                                                <input name="buttonType" type="hidden" value="SIMPLE"/>
+                                                                <input name="signature" type="hidden" value="5f559e872c134fa086be94c8e524dbefb57f60fc961d7a11e3404fce248bacf2"/>
+                                                                <button class="waves-effect light-green waves-light btn rounded center-align" type="submit">
+                                                                    Paga Hora
+                                                                    <i class="fa fa-angle-double-right" aria-hidden="true">
+                                                                    </i>
+                                                                </button>
+                                                            </form>
+                                                            {% else %} {% if object.hours.value == "50.000" %}
+                                                            <form accept-charset="UTF-8" action="https://gateway.payulatam.com/ppp-web-gateway/pb.zul" method="post">
+                                                                <input name="buttonId" type="hidden" value="qU/v/bMaGiAqLXGaEOu7+cUM4R9dNDD4zlVCGynFokXyYOI6fhBmRA=="/>
+                                                                <input name="merchantId" type="hidden" value="507148"/>
+                                                                <input name="accountId" type="hidden" value="679856"/>
+                                                                <input name="description" type="hidden" value="bolsa de 4 horas "/>
+                                                                <input name="referenceCode" type="hidden" value="was40"/>
+                                                                <input name="amount" type="hidden" value="50000"/>
+                                                                <input name="tax" type="hidden" value="0"/>
+                                                                <input name="taxReturnBase" type="hidden" value="0"/>
+                                                                <input name="shipmentValue" type="hidden" value="0"/>
+                                                                <input name="currency" type="hidden" value="COP"/>
+                                                                <input name="lng" type="hidden" value="es"/>
+                                                                <input name="approvedResponseUrl" type="hidden" value="http://127.0.0.1:8000/"/>
+                                                                <input name="declinedResponseUrl" type="hidden" value="http://127.0.0.1:8000/x"/>
+                                                                <input name="pendingResponseUrl" type="hidden" value="http://127.0.0.1:8000/y"/>
+                                                                <input name="displayShippingInformation" type="hidden" value="NO"/>
+                                                                <input id="urlOrigen" name="sourceUrl" type="hidden" value=""/>
+                                                                <input name="buttonType" type="hidden" value="SIMPLE"/>
+                                                                <input name="signature" type="hidden" value="c5ff7887620a77eba1d330a5abe9a4d6784d356038bdbee97ad6b5e60ab153b0"/>
+                                                                <button class="waves-effect light-green waves-light btn rounded center-align" type="submit">
+                                                                    Paga Hora
+                                                                    <i class="fa fa-angle-double-right" aria-hidden="true">
+                                                                    </i>
+                                                                </button>
+                                                            </form>
+                                                            {% else %}
+                                                            <form accept-charset="UTF-8" action="https://gateway.payulatam.com/ppp-web-gateway/pb.zul" method="post">
+                                                                <input name="buttonId" type="hidden" value="sFoNi8jMp0L3552jKANcD8TBUIAr1xy7gooF1Q1+N2m5wgrLMVq/FQ=="/>
+                                                                <input name="merchantId" type="hidden" value="507148"/>
+                                                                <input name="accountId" type="hidden" value="679856"/>
+                                                                <input name="description" type="hidden" value="bolsa de 8 horas "/>
+                                                                <input name="referenceCode" type="hidden" value="was80"/>
+                                                                <input name="amount" type="hidden" value="90000"/>
+                                                                <input name="tax" type="hidden" value="0"/>
+                                                                <input name="taxReturnBase" type="hidden" value="0"/>
+                                                                <input name="shipmentValue" type="hidden" value="0"/>
+                                                                <input name="currency" type="hidden" value="COP"/>
+                                                                <input name="lng" type="hidden" value="es"/>
+                                                                <input name="approvedResponseUrl" type="hidden" value="http://127.0.0.1:8000/"/>
+                                                                <input name="declinedResponseUrl" type="hidden" value="http://127.0.0.1:8000/x"/>
+                                                                <input name="pendingResponseUrl" type="hidden" value="http://127.0.0.1:8000/y"/>
+                                                                <input name="displayShippingInformation" type="hidden" value="NO"/>
+                                                                <input id="urlOrigen" name="sourceUrl" type="hidden" value=""/>
+                                                                <input name="buttonType" type="hidden" value="SIMPLE"/>
+                                                                <button class="waves-effect light-green waves-light btn rounded center-align" type="submit">
+                                                                    Paga Hora
+                                                                    <i class="fa fa-angle-double-right" aria-hidden="true">
+                                                                    </i>
+                                                                </button>
+                                                            </form>
+                                                            {% endif %}
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% empty %}
+                                            <div>
+                                                <p>
+                                                    Todavia no tienes ningun servicio agendado vamos pide el primero
+                                                </p>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+{% include 'footer.html' %}
+<script type="text/javascript">
+    var f = new Date();
+    A = f.getFullYear() + "-" + (f.getMonth() +1) + "-" +  f.getDate()    
+    $('#id_date').val(A)
+</script>
+<script type="text/javascript">
+    $('#id_date').pickadate({
+selectMonths: true,//Creates a dropdown to control month
+//selectYears: 15,
+
+labelMonthNext: 'Next Month',
+labelMonthPrev: 'Last Month',
+//The title label to use for the dropdown selectors
+labelMonthSelect: 'Select Month',
+labelYearSelect: 'Select Year',
+//Months and weekdays
+monthsFull: [ 'enero','febrero','marzo','abril','mayo','junio','julio',
+               'agosto','septiembre','octubre','noviembre','diciembre' ],
+monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec' ],
+weekdaysFull: [ "Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado" ],
+weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+//Materialize modified
+weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+//Today and clear
+today: 'Hoy',
+clear: 'Limpiar',
+close: 'Cerrar',
+//The format to show on the `input` element
+format: 'yyyy-mm-dd'
+});
+//Copy settings and initialization tooltipped
+</script>
+<script type="text/javascript">
+    $(document).on('submit','#new_service',function(e){
+        e.preventDefault();
+
+
+        $.ajax({
+            type: "POST",
+            url: 'service/create',
+            data:{
+                hours:$('#id_hours').val(),
+                ciudad:$('#id_ciudad').val(),
+                name:$('#name').val(),
+                email:$('#id_email').val(),
+                numero:$('#numero').val(),
+                date:$('#id_date').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function() {
+                location.reload();
+
+                $( "#agenda" ).removeClass( "active" );
+                $( "#agendado" ).addClass( "active" );
+            },
+            
+
+        });
+        
+    })
+</script>
