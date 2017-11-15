@@ -1,16 +1,23 @@
-{% extends "layout.pug" %}
+
+{% load material_form %}
 {% load i18n %}
-{% load static %}
+{% load staticfiles %}
+{% include 'head.html' %}
+{% include 'nav2.html' %}
+
 {% block content %}
 
-
-
+<br>
+<br>
+<br>
+<br>
 
 <div class="row" >
 	<div class="center" >
-       <img class="center"  src="{% static '/img/send.svg' %}" alt="Smiley face" height="35%" width="35%">
+       <img class="center"  src="{% static '/img/paper-plane.svg' %}" alt="Smiley face" height="25%" width="25%">
 	</div>
 </div>
+
 
 <div class="row" >
 	<div class="center">
@@ -22,6 +29,7 @@
 		
 	</div>
 </div>
+
 
 
 {% endblock %}

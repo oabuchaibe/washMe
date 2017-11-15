@@ -1,13 +1,14 @@
 {% load material_form %}
 {% load i18n %}
-{% block content %}
+{% load staticfiles %}
 {% include 'head.html' %}
 {% include 'nav2.html' %}
+{% block content %}
 <br/>
 <br/>
 <br/>
 <div class="row center">
-    <h3  class="">
+    <h3 class="">
         Bienvenido a Wash me
     </h3>
     <h4>
@@ -35,20 +36,25 @@
             <h4 class="center">
                 Con tu Email
             </h4>
-            <form method="post" action=".">
+            <form action="." method="post">
                 {% csrf_token %}
                 {% form form=form %}  {% endform %}
-                <input class="waves-effect waves-light btn-large" type="submit" value="{% trans 'Log in' %}" class="btn"/>
-                <input type="hidden" name="next" value="{{ next }}"/>
+                <input class="btn" type="submit" value="{% trans 'Log in' %}"/>
+                <input name="next" type="hidden" value="{{ next }}"/>
+                <a class="waves-effect waves-teal btn-flat" href="{% url 'auth_password_reset' %}">
+                    He olvidado mi contraseña ?
+                </a>
             </form>
         </div>
-        <a  href="{% url 'auth_password_reset' %}  ">
-            He olvidado mi contraseña ?
-        </a>
-        <a href="{% url 'registration_register' %}">
-            Abre una cuenta
-        </a>
     </div>
+</div>
+<div class="col s6 m6 l6">
+    <a href="{% url 'auth_password_reset' %}">
+        He olvidado mi contraseña ?
+    </a>
+    <a href="{% url 'registration_register' %}">
+        Abre una cuenta
+    </a>
 </div>
 {% include 'js.html' %}
 {% include 'footer.html' %}

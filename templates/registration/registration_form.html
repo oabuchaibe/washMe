@@ -1,15 +1,29 @@
-{% extends "layout.pug" %}
-{% load i18n %}
 {% load material_form %}
+{% load i18n %}
+{% include 'head.html' %}
+{% include 'nav2.html' %}
+
+
 {% block content %}
-<div ></div> 
+
+<br>
+<br>
+<br>
+<br>
+<div class="container" >
+ <div class="row">
+ 	<div class="col s12 m12 l12">
    <h3 >{% trans 'Sign up' %}</h3>
 	<form method="post" action=".">{% csrf_token %}
 	  	{% form form=form %}  {% endform %}
 	<br>  	
   	<input  type="submit" value="{% trans 'Submit' %}" class="btn" />
 	</form>
+	</div>
+	</div>	
 </div>
-{% endblock %} 
+{% endblock %}
+{% include 'js.html' %}
+{% include 'footer.html' %}
 
 
