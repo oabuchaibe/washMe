@@ -45,7 +45,8 @@ class Service(models.Model):
 		ordering = ['-timestamp']
 	def __str__(self):
 	 	return str(self.celular)
+
 	def get_absolute_url(self):
-		view_name = 'detail'
-		return reverse(view_name,kwargs={'pk':self.id})
+		view_name = "detail"
+		return reverse(view_name, kwargs={"pk": self.id})
 
